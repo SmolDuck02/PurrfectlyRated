@@ -1,0 +1,22 @@
+.navBody {
+
+
+    font-family: "Lexend", sans-serif;
+    background-color: #F4D3A1;
+    height: 100vh;
+
+}
+
+.sam{
+    margin:0 auto;
+    width: 50%;
+    color: rgb(143, 77, 12);
+    position: relative; 
+    top: 30%;
+    display: flex;
+    font-size: xx-large;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}

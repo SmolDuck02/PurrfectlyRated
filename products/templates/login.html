@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        
+        <form action="/api/products" method="POST">
+        {% csrf_token %}
+            <!-- <label for="usernamefield">Username</label> -->
+            <input id="usernamefield" type="Text" name="usernamefield" placeholder="Enter username" required>
+            <br>
+            <!-- <label for="passwordfield">Password</label> -->
+            <input id="passwordfield" type="Text" name="passwordfield" placeholder="Enter password" required>
+            <br>
+            <button type="submit">Login</button>
+        </form>
+    </body>
+</html>

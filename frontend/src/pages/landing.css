@@ -1,0 +1,276 @@
+
+.noStyle {
+    border: none;
+    cursor: pointer;
+}
+.signUpNowButton {
+    width: auto;
+    border-radius: 8px;
+    border: none;
+    background-color: rgb(182, 106, 29);
+    color: white;
+    font-size: 30px;
+    padding: 18px;
+    margin-top: 30px;
+    cursor: pointer;
+    font-family: 'Lexend', sans-serif;
+   
+}
+
+
+
+.landingbody {
+    font-family: "Inter", sans-serif;
+    background-color: #F4D3A1;
+    height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: #f0f0f0;
+}
+html, body {
+    height: 100%;
+  }
+.landingnav {
+    background-color: rgb(255, 238, 238);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 50px;
+}
+
+.landingnav ul {
+    margin-left: auto;
+    margin-right: 5%;
+    padding: 0; /* Optional: reset padding as well */
+  }
+  
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.logo img {
+    width: 30px;
+}
+
+.logo p {
+    font-weight: 550;
+}
+
+.logo .rated {
+    color: brown;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    font-size: large;
+}
+
+nav ul li {
+    cursor: pointer;
+    padding: 5px;
+}
+
+nav .icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.transparent-icon {
+    color: rgb(85, 85, 85);
+}
+
+/* POP OUT */
+.popout {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: solid 25px black;
+    z-index: 2;
+}
+
+/* BLUR EFFECT FOR THE POPOUT */
+.blur-background {
+    filter: blur(5px);
+}
+
+.form_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form_content i {
+    margin-left: auto;
+}
+
+.link_google {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 40px;
+}
+
+.link_google button {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+.link_google {
+    text-decoration: none;
+}
+
+.form_content p {
+    margin: 30px 0;
+}
+
+.input {
+    margin-bottom: 15px;
+}
+
+.checkbox {
+    width: 400px;
+    margin: 20px 0;
+}
+
+.checkbox > input[type="checkbox"] {
+    border: solid 10px black;
+    width: 10%;
+}
+
+.create {
+    width: 100%;
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: 30px;
+    padding: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.first_span {
+    max-width: 70%;
+    margin-top: 20px;
+}
+
+.second_span {
+    margin: 20px;
+}
+
+.third_span {
+    margin-bottom: 20px;
+}
+
+.second_span a,
+.third_span a {
+    text-decoration: none;
+}
+
+span b {
+    color: blue
+}
+
+.link_google,
+input {
+    border: solid 5px black;
+    padding: 15px;
+    width: 95%;
+}
+
+
+
+
+
+/* MAIN: first */
+
+.first {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 500px;
+}
+
+
+.intro:first-child {
+    font-size: 30px;
+    max-width: 35%;
+    text-align: left;
+    margin-left: 10%;
+}
+.intro h1 {
+    font-family: 'Lexend', sans-serif;
+}
+.intro span {
+    font-size: 18px;
+    font-family: 'Lexend', sans-serif;
+}
+
+.first img {
+    width: 50%;
+}
+
+/* MAIN: second */
+
+.second {
+    background-color: rgb(255, 238, 238);
+}
+
+.pet--products {
+    margin: 0 0 20px 5%;
+}
+
+.second img {
+    width: 60%;
+}
+
+.fa-star {
+    color: yellow;
+}
+
+.far {
+    color: gray;
+}
+
+.parent--container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    background-color:  rgb(236, 194, 155);
+
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.description .info {
+    margin: 10px 0 0 0;
+}
+
+.description h1 {
+    margin: 10px 0 0 0;
+}
+
+
