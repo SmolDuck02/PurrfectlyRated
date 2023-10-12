@@ -47,8 +47,8 @@ function Signup(){
         <div className="loginbody">
             <main className="signupmain">
                 
-                <div style={{width: "50%", height:'100vh',  minHeight:"800px", overflow:"hidden"}}>
-                    <img className="loginimg" src={catImage} alt="Fierce El Gato" style={{ height: '100%', width: '100%', objectFit:"cover"}}/>
+                <div className='bg-dark-brown flex items-center w-1/2 h-screen min-h-[800px] overflow-hidden'>
+                    <img src={catImage} alt="Fierce El Gato" className="h-4/5"/>
                 </div>
                 
                 <section className="signupcontent">

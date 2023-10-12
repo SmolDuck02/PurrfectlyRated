@@ -1,0 +1,202 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>PurrfectlyRated</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+  />
+  <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+
+
+  <link rel="stylesheet" href="{% static 'master.css' %}">
+
+  {% block head %}
+  {% endblock %}
+  
+</head>
+<body >
+  <nav class="masterNav">
+    <div class="logo" id="logoDiv">
+        <img id="AppLogo" src="{% static '/img/logo.png' %}" alt="PurrfectlyRated Logo" />
+        <h1>Purrfectly<span class="rated">Rated</span></h1>
+    </div>
+    <ul>
+        <li><a href="/authentication/login">Home</a></li>
+        <li>About Us</li>
+        <li>Collections</li>
+        <li>Gallery</li>
+    </ul>
+    <div class="icons">
+      {% if session_data.id > 0 %}
+        <div class="inputDiv">
+          <i class="fa fa-search transparent-icon"></i> 
+          <form id="searchForm" method="post">
+            {% csrf_token %}
+            <input type="text" id="searchInput" onkeypress="handleOnEnter(event)" name="searchInput" placeholder="Search my purpose in life...  &#9733;"> 
+          </form>
+           
+        </div>
+
+        <i id="userButton" style="cursor:pointer" class="fa fa-user transparent-icon"></i>
+        
+      {% else %}
+        <button id="adminButton" class="buttonFillStyle">Admin</button>
+        <button id="loginButton" class="buttonBorderStyle">Login</button>
+      {% endif %}
+      
+        <!-- <i class="fa fa-search transparent-icon"></i> -->
+        <!-- {% if session_data.id %}
+          <div><h1>BAWAOWOAOAWOA</h1></div>
+
+        {% else %}
+
+
+        {% endif %} -->
+        
+    </div>
+  </nav>
+
+  <div class="settingsDiv">
+    <div id="profileSubDiv"><i class="fa-solid fa-user"></i>Your Profile</div>
+    <div id="deleteSubDiv"><i class="fa-solid fa-user"></i>Delete Account</div>
+    <div id="logOutSubDiv"><i class="fa-solid fa-right-from-bracket"></i>Log Out</div>
+  </div>
+  
+
+  <div class="deleteAccountDiv">
+    <div class="deleteAccountContent">
+      <h1>Are you sure?</h1>
+      <div class="buttonsDiv">
+        <button id="confirmButton" class="buttonFillStyle">Confirm</button>
+        <button id="cancelButton" class="buttonBorderStyle">Cancel</button>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+  <script>
+    
+    const userButton = document.getElementById("userButton");
+    const loginButton = document.getElementById("loginButton");
+    const adminButton = document.getElementById("adminButton");
+
+    const profileButton = document.getElementById("profileSubDiv");
+    const deleteButton = document.getElementById("deleteSubDiv");
+    const logOutButton = document.getElementById("logOutSubDiv");
+
+    const deleteAccountDiv = document.querySelector(".deleteAccountDiv");
+    const confirmButton = document.getElementById("confirmButton");
+    const cancelButton = document.getElementById("cancelButton");
+
+
+    const settingsDiv = document.querySelector(".settingsDiv"); // Get the .settingsDiv element
+    const divElements = settingsDiv.getElementsByTagName("div");
+
+    const session_data = {
+        id: "{{ session_data.id }}"
+    };
+
+    userButton?.addEventListener("click", (event) => {
+      // Prevent the click event from propagating to the document
+        event.stopPropagation();
+
+        console.log(session_data.id);
+
+        if(!session_data.id){
+          window.location.href = "/authentication/login";
+        }
+        else{
+          // Toggle the "active" class on the .settingsDiv to show/hide it
+          settingsDiv.classList.toggle("active");
+          for (const div of divElements) {
+            div.classList.toggle("active");
+          }
+        }
+        
+    });
+
+
+    loginButton?.addEventListener("click", (event) => {
+      // Prevent the click event from propagating to the document
+        event.stopPropagation();
+        window.location.href = "/authentication/login";
+ 
+    });
+
+    adminButton?.addEventListener("click", (event) => {
+      // Prevent the click event from propagating to the document
+        event.stopPropagation();
+        window.location.href = "/authentication/admin";
+ 
+    });
+
+
+    profileButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        window.location.href = "/profile";
+    });
+
+    deleteButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        deleteAccountDiv.style.display = "flex";
+    });
+
+    cancelButton.addEventListener("click", (event) => {
+        deleteAccountDiv.style.display = "none";
+    })
+
+    confirmButton.addEventListener("click", (event) => {
+        window.location.href = `/authentication/delete_account/${ session_data.id }`;
+    })
+
+    logOutButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        window.location.href = "/authentication/logout";
+    });
+
+
+    function handleOnEnter(event){
+        if(event.key === 'Enter'){
+          console.log("eyooo");
+          const searchForm = document.getElementById("searchForm");
+          if(searchForm){
+            searchForm.action = `/search/${searchInput.value}`;
+            searchForm.submit();
+            
+          }
+          
+        }
+    }
+
+    // Listen for clicks anywhere on the document
+    document.addEventListener("click", () => {
+
+      if(settingsDiv.classList.contains("active")){
+        settingsDiv.classList.toggle("active");
+        for (const div of divElements) {
+          div.classList.toggle("active");
+        }
+      }
+      
+    });
+
+
+  </script>
+
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

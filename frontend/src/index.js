@@ -13,6 +13,8 @@ import Profile from './pages/profile';
 import Home from './pages/home';
 
 import './index.css';
+
+import ImageUploadForm from './pages/baba';
 // import ProductList from "./pages/products"
 // import { UserProvider } from './pages/UserContext';
 

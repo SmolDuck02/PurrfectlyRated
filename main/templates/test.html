@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'test.css' %}">
+    </head>
+
+    <body>
+        <div class="container">
+            <!-- <textarea id="pag" style="width: 100%; background-color:#ffead1; height: auto; padding: 10px; border: none;" placeholder="Speak Now..."></textarea> -->
+            <p id="pag">
+                Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum JLorem
+                Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+            </p>
+            <span id="seeMoreButton">See more</span>
+        </div>
+
+        <script>
+
+            const seeMoreButton = document.getElementById("seeMoreButton");
+            const paragraph = document.getElementById("pag");
+
+            // console.log(window.getComputedStyle(paragraph).getPropertyValue("-webkit-line-clamp"));
+            console.log(paragraph.textContent.length, "bawaowao0");
+            if(paragraph.textContent.length > 160){
+                seeMoreButton.style.display = "flex";
+            }
+
+            seeMoreButton.addEventListener("click", () => {
+                paragraph.classList.toggle("active");
+                if(paragraph.classList.contains("active")){
+                    paragraph.style.webkitLineClamp = 1000;
+                }
+                else{
+                    paragraph.style.webkitLineClamp = 2;
+                }
+            });
+
+        </script>
+    </body>
+</html>
+
+
+
+<!-- 
+Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum -->

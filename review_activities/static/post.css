@@ -1,0 +1,44 @@
+/* body {
+    background-color: rgb(0, 0, 0);
+    font-family: verdana;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+
+  h1 {
+    color: #14c383;
+    margin:0;
+  }
+
+  p {
+    color: rgb(135, 135, 135);
+  } */
+
+  .subBody {
+    width: auto;
+    height: 100%;
+    background-color: antiquewhite;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .searchBarDiv {
+    background-color: white;
+    padding: 10px;
+    border-radius:5px;
+    width: auto;
+
+  }
+
+  .searchBarDiv input {
+    border-radius: 3px;
+    padding: 5px;
+    width: 300px;
+  }

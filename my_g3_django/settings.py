@@ -42,8 +42,14 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'corsheaders',
-
+    
+    
+    'main.apps.MainConfig',
+    'authentication.apps.AuthenticationConfig',
     'products.apps.ProductsConfig',
+    
+    'review_activities.apps.ReviewActivitiesConfig',
+    
     
 ]
 
@@ -72,6 +78,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'main.context_processors.session_data',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -119,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -128,8 +135,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
-STATIC_URL = 'static/'
+
+
+STATIC_URL = '/static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -137,9 +149,19 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'frontend/build/static')
-# ]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static'),
+# #     os.path.join(BASE_DIR, 'frontend/build/static')
+# )
+
+
+
+
+
 
 
 CORS_ALLOWED_ORIGINS = [

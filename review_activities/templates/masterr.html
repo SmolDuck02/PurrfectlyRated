@@ -1,0 +1,69 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>PurrfectlyRated</title>
+  
+  <link rel="stylesheet" href="{% static 'master.css' %}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+  />
+  <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+
+  {% block head %}
+  {% endblock %}
+  
+</head>
+<body >
+  <nav class="landingnav">
+    <div class="logo" id="logoDiv">
+        <img id="AppLogo" src="{% static '/img/logo.png' %}" alt="PurrfectlyRated Logo" />
+        <h1>Purrfectly<span class="rated">Rated</span></h1>
+    </div>
+    <ul>
+        <li><a href="{% url 'products:products' %}">Home</a></li>
+        <li>About Us</li>
+        <li>Collections</li>
+        <li>Gallery</li>
+    </ul>
+    <div class="icons">
+        <i class="fa fa-search transparent-icon"></i>
+
+        <button id="userButton" class="noStyle">
+            <i class="fa fa-user transparent-icon"></i>
+        </button>
+    </div>
+  </nav>
+
+  <div class="settingsDiv">
+    <div id="prrofileSubDiv"><i class="fa-solid fa-user"></i>Your Profile</div>
+    <div id="deleteeSubDiv"><i class="fa-solid fa-user"></i>Delete Account</div>
+    <div id="logOutSubDiv"><i class="fa-solid fa-right-from-bracket"></i>Log Out</div>
+  </div>
+
+
+
+  <script>
+    const userButton = document.getElementById("userButton");
+    const settingsDiv = document.querySelector(".settingsDiv"); // Get the .settingsDiv element
+
+    userButton.addEventListener("click", () => {
+        // Toggle the "active" class on the .settingsDiv to show/hide it
+        settingsDiv.classList.toggle("active");
+    });
+  </script>
+
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

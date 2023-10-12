@@ -32,6 +32,8 @@ a {
 html, body {
     height: 100%;
   }
+
+  
 .landingnav {
     background-color: rgb(255, 238, 238);
     display: flex;

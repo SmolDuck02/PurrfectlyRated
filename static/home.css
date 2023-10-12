@@ -1,0 +1,460 @@
+.homeBody {
+    height: auto;
+    width: 100%;
+    background-color: #f5f1ee;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    min-height: 1000px;
+}
+
+
+.noStyle {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.searchBarContainer {
+    background-color: #ffffff;
+    box-shadow: 0 0 50px -50px;
+    height: 70px;
+    width: 40%;
+    margin: 0 auto;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center the content */
+    align-items: center; /* Horizontally center the content */
+  
+}
+
+.navigateContentParent {
+
+    background-color: #ffffff;
+    box-shadow: 0 0 50px -50px;
+    height: auto;
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 5px 5px 0px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #696969;
+    position: relative;
+    z-index: 9000px;
+
+    border: none; /* Remove all borders */
+    border-bottom: 2px solid #696969; 
+    
+}
+
+.navigateContentParent h2{
+    font-size: large;
+    font-weight: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:  0 auto;
+    height: 100%;
+    /* background-color: #696969; */
+    flex-grow: 1;
+    cursor: pointer;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.navigateContentParent h2:hover{
+    background-color: #e0e0e0;
+}
+
+.allReviewPostsParent {
+
+    box-shadow: 0 0 50px -50px;
+    height: auto;
+    width: 40%;
+    margin: 0 auto;
+    /* margin-top: 10px; */
+    border-radius: 0px 0px 5px 5px;
+    display: flex;
+    flex-direction: column;
+
+  
+}
+
+.allReviewPostsParent i {
+    cursor: pointer;
+    color: #cc8033;
+}
+
+
+[id^="reviewPostContainer-"]{
+    background-color: #ffffff;
+    box-shadow: 0 0 50px -50px;
+    height: auto;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border-radius: 0px 0px 5px 5px;
+    display: flex;
+    flex-direction: column;
+
+    color: #696969;
+    max-height: 700px;
+
+    transition: max-height 0.2s ease;
+  
+}
+
+
+[id^="reviewPostContainer-"].active {
+    max-height: 65px;
+}
+
+[id^="reviewPostContainer-"] .after{
+    
+    font-weight: normal;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 35%;
+   
+    margin: 20px 40px;
+ 
+    visibility: hidden;
+    opacity: 0%;
+
+    transition: visibility 0.1s ease, opacity 0.1s ease;
+}
+
+[id^="reviewPostContainer-"] .after form{
+    margin-left: auto;
+}
+
+[id^="reviewPostContainer-"].active .after {
+    opacity: 100%;
+    visibility: visible;
+}
+[id^="reviewPostContainer-"] .before {
+    opacity: 100%;
+    visibility: visible;
+    transition: visibility 0.1s ease, opacity 0.01s ease;
+}
+
+[id^="reviewPostContainer-"].active .before {
+    opacity: 60%;
+    visibility: hidden;
+}
+
+
+
+
+
+
+
+.allProductPostsParent {
+
+    box-shadow: 0 0 50px -50px;
+    height: fit-content;
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 0px 0px 5px 5px;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+
+  
+}
+
+
+.productContainer {
+    background-color: #ffffff;
+    box-shadow: 0 0 50px -50px;
+    height: fit-content;
+    width: 31%;
+    
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+
+    color: #696969;
+
+  
+}
+
+.productContainer .productNameContainer{
+    padding: 5px 20px 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.productNameContainer i {
+    cursor: pointer;
+}
+
+.productContainer img {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+
+.productCategoryContainer {
+    display:flex;
+    height: auto;
+    align-items: center;
+    gap: 8px;
+    padding-left: 15px;
+    padding-top: 15px;
+    color: #626262;
+
+}
+
+
+
+
+.makeReviewDiv {
+    display: none;
+    align-items: center;
+    position: fixed; /* Use 'fixed' instead of 'absolute' to keep it centered even when scrolling */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    margin: auto; /* Centers the form */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(66, 37, 34, 0.3);
+    z-index: 999;
+}
+
+
+[id^="makeChangesDiv-"]  {
+    display: none;
+    align-items: center;
+    position: fixed; /* Use 'fixed' instead of 'absolute' to keep it centered even when scrolling */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    margin: auto; /* Centers the form */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(66, 37, 34, 0.3);
+    z-index: 999;
+}
+
+
+.makeReviewForm {
+    background-color: #f2d1a0;
+    box-shadow: 0 0 50px -50px;
+    height: auto;
+    width: 35%;
+    margin: 0 auto;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+
+    color: #696969;
+    max-height: 700px;
+
+    transition: max-height 0.2s ease;
+  
+}
+
+.imagesAddPost {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid  #696969;
+    height: 350px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 8px;
+    /* margin-bottom: 10px; */
+    cursor: pointer;
+    background-size: cover;
+    background-position-y: center;
+    background-color: #ffffff;
+}
+
+
+[id^="imagesChangePost-"]{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid  #696969;
+    height: 350px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 8px;
+    /* margin-bottom: 10px; */
+    cursor: pointer;
+    background-size: cover;
+    background-position-y: center;
+    background-color: #ffffff;
+}
+
+
+.fa-solid.fa-image.fa-lg {
+    text-shadow: 2px 2px 2px #222222;
+    padding: 50px;
+
+}
+
+
+.userPostDetails {
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.userPostDetails span{
+    font-size: x-small;
+    padding: 0px;
+    margin: 0px;
+}
+.headerPost {
+    display: flex; /* Use flexbox to arrange children horizontally */
+    align-items: center; /* Center vertically */
+    justify-content: flex-start;
+    margin: 0px;
+    width: 90%;
+    margin: 20px;
+    height: auto;
+    gap: 10px;
+
+    /* background-color: aliceblue; */
+}
+
+.descriptionPost {
+    font-size: small;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 10px;;
+    display: flex;
+    justify-content: flex-start;
+
+    /* background-color: #696969; */
+}
+
+
+.descriptionPost input {
+    border:none;
+    font-size: 16px;
+    width: 100%;
+    padding: 8px;
+    flex-wrap: wrap; 
+    /* background-color: #696969; */
+}
+
+.descriptionPost span {
+    font-size: 16px;
+}
+
+
+.imagesPost {
+    background-color: #f5f4f4;
+    height: 350px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    
+}
+
+.imagesPost img {
+    height: 100%;
+    object-fit:contain;
+    
+    
+}
+.buttonsPost {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    height: 50px;
+    /* background-color: black; */
+}
+
+.buttonsPost i, .buttonsPost div{
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+.top {
+    display: flex; /* Use flexbox to arrange children horizontally */
+    align-items: center; /* Center vertically */
+    justify-content: flex-start;
+    margin: 20px;
+    width: 90%;
+    gap: 20px;
+    /* background-color: aliceblue; */
+}
+
+.top form {
+    flex-grow: 1;
+    /* background-color: aquamarine; */
+}
+
+.top input {
+    border: 1px solid #f0f0f0;
+    border-radius: 50px;
+    background-color: #f9f9f9;
+    font-weight: bold;
+    padding: 10px 25px;
+    font-size: 15px;
+    width: 90%; /* Set the input to take up 100% of the available width */
+}
+
+
+.profileMiniUserPicture {
+
+    width: 40px;
+    border-radius: 50%;
+    overflow: hidden; /* Clip image to the circular shape */
+    position: relative; /* Create a positioning context for the child img */
+
+    background-color: antiquewhite;
+/* 
+    
+    background-repeat: no-repeat;
+    background-size: cover; Maintain aspect ratio */
+
+}
+
+.pawButton {
+    width: auto;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(182, 106, 29);
+    color: white;
+    font-size: 15px;
+    padding: 8px;
+    cursor: pointer;
+   
+}
+
+
+#publishReviewButton {
+    width: 100%;
+    /* border-radius: 7px; */
+    border: none;
+    background-color: rgb(182, 106, 29);
+    color: white;
+    font-size: 22px;
+    padding: 12px;
+    cursor: pointer;
+    margin: 0 auto;
+   
+   
+}
+

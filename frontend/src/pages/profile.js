@@ -32,6 +32,18 @@ function Profile(){
     //FOR GETTING USER -END
 
 
+    const handleScrollToCenter = () => {
+        // Get the viewport height
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    
+        // Calculate the position to scroll to (center of the viewport)
+        const scrollToPosition = viewportHeight / 2;
+    
+        // Scroll the page to the calculated position
+        window.scrollTo({ top: scrollToPosition, behavior: "smooth" });
+    };
+
+
     return (
         <div className="profilebody">
 
@@ -57,7 +69,7 @@ function Profile(){
                 <div className="top">
                     <img src={defaultUserPFP} className="profileMiniUserPicture" alt="mini user pfp"/>
                     <form action="">
-                        <input type="text" id="review" name="review" placeholder="Make a Product Review &#9733;" required/>
+                        <input onClick={handleScrollToCenter} type="text" id="review" name="review" placeholder="Search For A Product To Review &#9733;" required/>
                     </form>
                     <button className="pawButton"><i className="fa-solid fa-paw "></i> </button>
                 </div>

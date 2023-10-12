@@ -1,0 +1,147 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link rel="stylesheet" href="{% static 'profile.css' %}">
+    
+{% endblock %}
+
+
+{% block content %}
+<div class="profileUserDetailsContainer">
+    <div class="profileUserBackground">
+        <div class="profileUserPicture">
+           <img src="{% static '/img/pfp.png' %}" alt="user pfp"></img>
+        </div>
+    </div>
+    
+    <div class="profileUserName">
+        <h1>{{ user.username }}</h1>
+        <button class="profileButton"><b><i class="fa-solid fa-pen fa-xs"></i>&emsp;Edit Profile</b></button>
+    </div>
+</div>
+<div class="profilebody">
+    <!-- <div class="makeReviewContainer">
+        <div class="top">
+            <img src="{% static '/img/pfp.png' %}" class="profileMiniUserPicture" alt="mini user pfp"/>
+            <form action="">
+                <input onClick={handleScrollToCenter} type="text" id="review" name="review" placeholder="Got something to say?  " required/>
+            </form>
+            <button class="pawButton"><i class="fa-solid fa-paw "></i> </button>
+        </div>
+    </div> -->
+<!-- 
+    <div class="searchBarContainer">
+        <div class="top">
+            <img src="{% static '/img/logo.png' %}" class="profileMiniUserPicture" alt="mini user pfp"/>
+            <form action="">
+                <input onClick={handleScrollToCenter} type="text" id="makeReview" name="makeReview" placeholder="Got something to say?" required/>
+            </form>
+            <button class="pawButton"><i class="fa-solid fa-paw "></i> </button>
+        </div>
+    </div> -->
+
+
+    {% if post_list %}
+        <h1 class="title">Your Reviews</h1>
+        <div class="allReviewPostsParent">
+            {% for post in post_list %}
+                <div id="reviewPostContainer-{{ post.id }}">
+                    <div class="after">
+                        <h3>This post has been deleted!</h3>
+                        <form action="/undelete_post/{{ post.id }}" method="post" >
+                            {% csrf_token %}
+                            <!-- <button class="noStyle"> -->
+                                <i id="undoDeletePostButton-{{ post.id }}" class="fa-solid fa-arrow-rotate-left fa-lg"></i>
+                            <!-- </button> -->
+                        </form>
+                    
+                    </div>
+                    
+                    <div class="before">
+                        <div class="headerPost">
+                            <img src="{% static '/img/logo.png' %}" class="profileMiniUserPicture" alt="mini user pfp"/>
+                            <div class="userPostDetails">
+                                <h2>{{ post.postUser__username | title }}</h2>
+                                <span>{{ post.datetimePublished }}</span>
+                            </div>
+                            {% if post.postUser__id == request.session.user_id %}
+                                <i id="makeChangesButton-{{ post.id }}" class="fa-solid fa-pen"></i>
+                            {% endif %}
+                            <div style="width: 10px;"></div>
+                            <form action="/delete_post/{{ post.id }}" method="post">
+                                {% csrf_token %}
+                                <!-- <button class="noStyle"> -->
+                                    <i id="deletePostIcon-{{ post.id }}" class="fa-solid fa-x fa-lg"></i>
+                                <!-- </button> -->
+                            </form>
+
+                            <!-- <i class="fa-solid fa-ellipsis fa-lg" style="color: #cc8033;"></i> -->
+                        </div>
+                        <div class="descriptionPost">
+                            <span>{{ post.post_description }}</span>
+                            <!-- <span>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </span> -->
+                        </div>
+                        <div class="imagesPost">
+                            <img id="changeImage-{{ post.id }}" src="/media/{{ post.post_picture }}" alt="postImages">
+                        </div>
+                        <div class="buttonsPost">
+                            <div>
+                                <i class="fa-solid fa-arrow-up fa-xl"></i>
+                                <i class="fa-solid fa-arrow-up fa-rotate-180 fa-xl"></i>
+                            </div>
+                            <i class="fa-solid fa-comment fa-xl"></i>
+                            <i class="fa-solid fa-paw fa-xl"></i>
+                        
+                        </div>
+                        
+                    </div>
+                </div>
+                
+
+
+                
+                <div id="makeChangesDiv-{{ post.id }}">
+                    <div class="makeReviewForm">
+                        <div class="before">
+                            <div class="headerPost">
+                                <img src="{% static '/img/logo.png' %}" class="profileMiniUserPicture" alt="mini user pfp"/>
+                                <div class="userPostDetails">
+                                    <h2>{{ user.username | title }}</h2>
+                                </div>
+                                <i id="cancelPostIcon-{{ post.id }}" class="fa-solid fa-x" style="cursor: pointer;"></i>
+                    
+                                <!-- <i class="fa-solid fa-ellipsis fa-lg" style="color: #cc8033;"></i> -->
+                            </div>
+                            <form action="/update_post/{{ post.id }}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="descriptionPost">
+                                    <textarea id="description" name="description" style="width: 100%; background-color:#ffead1; height: 20px; padding: 10px; border: none;" placeholder="Speak Now...">{{ post.post_description }}</textarea>
+                                    <!-- <input id="postDescription" name="postDescription" type="text"  style="white-space: pre-wrap;" placeholder="Speak Now..." required> -->
+                                </div>
+                                
+                                <div id="imagesChangePost-{{ post.id }}" class="imagesChangePostDiv">
+                                    <i class="fa-solid fa-image fa-lg">&nbsp; Add Images</i>
+                                    <input type="file" id="changeImageInput-{{ post.id }}" name="changeImageInput" accept="image/*" style="display: none;" />
+                                </div>
+                                <button type="submit" id="publishReviewButton">Save Changes</button>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+    
+    {% else %}
+        <div class="profileReviews">
+            <p>No Reviews Made.</p>
+        </div>
+    
+    {% endif %}
+</div>
+
+   
+{% endblock %}

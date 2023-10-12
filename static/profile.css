@@ -1,0 +1,233 @@
+
+.profilebody {
+    font-family: "Lexend", sans-serif;
+    background-color: #f5f1ee;
+
+    height: 100%;
+    padding: 10px;
+    overflow: hidden;
+}
+
+
+.title {
+    margin-left : 30%;
+    color: #624738;
+}
+
+.profileUserPicture {
+    margin-left: 2%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden; /* Clip image to the circular shape */
+    position: relative; /* Create a positioning context for the child img */
+    border: 10px solid #f2d1a0 ;
+    /* #F4D3A1 */
+    transform: translateY(150%);
+    background-color: #f2d1a0 ;
+
+    background-image: url('./img/pfp.png');
+    background-repeat: no-repeat;
+    background-size: cover; /* Maintain aspect ratio */
+
+}
+
+.profileMiniUserPicture {
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden; /* Clip image to the circular shape */
+    position: relative; /* Create a positioning context for the child img */
+
+    background-color: #f2d1a0 ;
+/* 
+    
+    background-repeat: no-repeat;
+    background-size: cover; Maintain aspect ratio */
+
+}
+
+.profileUserPicture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crop and scale the img to fill the entire div */
+    border-radius: 50%; /* Ensure the img is circular */
+}
+
+.profileUserBackground{
+    background-color: #D1B78F;
+    margin: 0 auto;
+    display: flex; /* Use flexbox */
+    justify-content: flex-start;
+    height: 400px;
+    width: 90%;
+    border-radius: 0px 0px 10px 10px;
+    background-image: url('./img/background.png');
+    background-repeat: no-repeat;
+    background-size: cover; /* Maintain aspect ratio */
+    background-position: bottom; 
+} 
+
+.profileUserDetailsContainer {
+    height: auto;
+    /* background-color: #F4D3A1; */
+    background-color: #ffead1  ;
+    padding-bottom: 25px;
+    
+}
+
+.profileUserName {
+    height: 150px;
+    width: 70%;
+    display: flex; /* Use flexbox for vertical centering */
+    align-items:center; /* Center vertically */
+    margin-right: 5%;
+    margin-left: auto;
+    font-size: 1.5em;
+    justify-content: space-between;
+ 
+  
+}
+
+.profileUserName h1{
+    color: #624738
+}
+
+
+.makeReviewContainer {
+    background-color: #F4DCC0;
+    box-shadow: 0 0 50px -50px;
+    height: 100px;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center the content */
+    align-items: center; /* Horizontally center the content */
+
+}
+
+.profileHr{
+    color:#fefefe;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.top {
+    display: flex; /* Use flexbox to arrange children horizontally */
+    align-items: center; /* Center vertically */
+    justify-content: center;
+    padding: 0 0px 0px 0px;
+    width: 100%;
+    gap: 10px;
+    /* background-color: aliceblue; */
+}
+
+.top form {
+    width: 80%;
+    /* background-color:aquamarine; */
+}
+
+
+.top input {
+    border: 1px solid #f0f0f0;
+    border-radius: 50px;
+    background-color: #f0f0f0;
+    /* #f9f9f9 */
+    font-weight: bold;
+    height: auto;
+    padding: 15px;
+    font-size: 15px;
+    width: 550px;
+   
+}
+
+
+.profileReviews {
+ 
+    background-color: #e3e3e3;
+    box-shadow: 0 0 50px -50px;
+    height: 1000px;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#5b5b5b;
+    font-size:xx-large;
+}
+
+
+.profileButton {
+    width: auto;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(182, 106, 29);
+    color: white;
+    font-size: 20px;
+    padding: 12px;
+    cursor: pointer;
+   
+}
+
+.pawButton {
+    width: auto;
+    border-radius: 15px;
+    border: none;
+    background-color: rgb(182, 106, 29);
+    color: white;
+    font-size: 20px;
+    padding: 12px;
+    cursor: pointer;
+   
+}
+
+
+
+
+
+
+.settingsDiv {
+    position: absolute;
+    right: 1.5%;
+    /* left: 80%; Set the horizontal position (x) in pixels */
+    /* top: 7.7%; Set the vertical position (y) in pixels */
+    /* Additional styling properties for your dropdown menu */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Other styles like width, height, etc. */
+    width: auto;
+    height: auto;
+    padding: 10px;
+    border-radius: 0 0px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    z-index: 1000; /* Ensure the dropdown appears above other elements */
+    /* Add any other styles you need */
+
+    
+    
+  }
+
+  .settingsSubDiv {
+    border-radius: 5px;
+    padding: 10px 5px;
+    cursor: pointer;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  
+
+  .settingsSubDiv:hover {
+    background-color: #f0f0f0; /* Change the background color when hovering */
+    
+}

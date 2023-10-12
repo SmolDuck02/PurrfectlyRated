@@ -10,34 +10,45 @@ import dogImage from "./img/dog.png";
 function Login(){
 
     const navigate = useNavigate();
-
-    //API
+    
+    //API CALL..?
     let [userList, setUserList] = useState([])
 
     useEffect(() => {
         getUserList()
-    }, [])
+        const currentUser = userList.find(user => user.isCurrentUser);
+        if(currentUser){
+            navigate('/home')
+        }
+    }, [navigate, userList]);
 
-    let getUserList = async () => {
-        let response = await fetch('/api/users/')
-        let data = await response.json()
-        console.log('data', data)
-        
-        setUserList(data)
-    }
 
 
     //call to backend
-    let updateUser = async (user) => {
-        fetch(`/api/users/${user['id']}/update/`, {
+    const getUserList = async () => {
+        try {
+          const response = await fetch('/api/users/');
+          const data = await response.json();
+          console.log('data', data);
+          setUserList(data);
+        } catch (error) {
+          console.error('Error fetching user list:', error);
+        }
+      }
+    
+      const updateUser = async (user) => {
+        try {
+          await fetch(`/api/users/${user.id}/update/`, {
             method: "PUT",
             headers: {
-                'Content-Type': 'application/json'
+              'Content-Type': 'application/json'
             },
             body: JSON.stringify(user)
-        })         
-    }
-
+          });
+        } catch (error) {
+          console.error('Error updating user:', error);
+        }
+      }
     
 
     let onSignIn = () => {
@@ -59,8 +70,10 @@ function Login(){
         }
     }
 
+   
+
     return(
-        <div className="loginbody">
+        <div  className="loginbody">
             <main className="loginmain">
                 
                 <div style={{width: "50%", height:'100vh', minHeight:"800px", overflow:"hidden"}}>
@@ -87,8 +100,9 @@ function Login(){
                     </div>
                     <p className="loginsignin">Or Sign in To Continue</p>
                     <div className="loginform">
-                        <input id="email" name="email" type="text" placeholder="Username" required/>
-                        <input id="password" name="password" type="password" placeholder="Password" required/>
+                        <input id="email" name="email" type="text" placeholder="Username" required autoComplete="username"/>
+                        <input id="password" name="password" type="password" placeholder="Password" required autoComplete="current-password"/>
+
                         <div className="loginremember">
                             <div className="left">
                                 <input type="checkbox" />

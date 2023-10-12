@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    align-content: center;
+    background-color: #202020;
+    height: 100vh;
+    flex-wrap: wrap;
+}
+
+.container {
+    background-color: #e0e0e0;
+    margin: 0 auto;
+
+    width: 30%;
+    padding: 15px;
+    border-radius: 7px;
+
+    
+}
+
+.container p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    transition: overflow 0.2s ease;
+}
+
+.container p.active{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.container span {
+    display: none;
+    justify-content: flex-end;
+    cursor: pointer;
+}

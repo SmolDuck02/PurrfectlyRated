@@ -1,0 +1,58 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PurrfectlyRated</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+    <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+  
+    <link rel="stylesheet" href="{% static 'signup.css' %}">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+</head>
+<body class="signupBody">
+    <main class="signupmain">
+        
+        <div class="imageContainer">
+            <img src="{% static '/img/cat.png' %}" alt="Fierce El Gato"/>
+        </div>
+        
+        <section class="signupcontent">
+            <a href="/">
+                <i class="fa-solid fa-x fa-xl" style="color: rgb(182, 106, 29);"></i>
+            </a>
+            <h1>Sign Up</h1>
+            <hr class="signupHr"/>
+            <form class="signupform" method="post">
+                {% csrf_token %}
+                <input type="text" id="usernameinput" name="usernameinput" placeholder="Username" />
+                <input type="email" id="email" placeholder="Email" />
+                <input type="password" id="passwordinput" name="passwordinput" placeholder="Password" />
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" />
+                
+                <div class="signup_button">
+                    <button onClick={handleOnSignUp}>Sign Up</button>
+                </div>
+            </form>
+            <div class="signupterms">
+            
+                    <span>Already Have Account?</span>
+            
+                &nbsp;
+                <a href="/authentication/login">
+                    <span><b>Sign in</b></span>
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
