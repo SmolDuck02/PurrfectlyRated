@@ -2,13 +2,17 @@
 {% load static %}
 
 {% block head %}
-    <link rel="stylesheet" href="{% static 'home.css' %}">
-    <link rel="stylesheet" href="{% static 'profile.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
     
 {% endblock %}
 
 
 {% block content %}
+
+{% include "add_post.html" with from_page='profile' %}
+
+
 <div class="profileUserDetailsContainer">
     <div class="profileUserBackground">
         <div class="profileUserPicture">
@@ -21,29 +25,21 @@
         <button class="profileButton"><b><i class="fa-solid fa-pen fa-xs"></i>&emsp;Edit Profile</b></button>
     </div>
 </div>
+
+
+
 <div class="profilebody">
-    <!-- <div class="makeReviewContainer">
-        <div class="top">
-            <img src="{% static '/img/pfp.png' %}" class="profileMiniUserPicture" alt="mini user pfp"/>
-            <form action="">
-                <input onClick={handleScrollToCenter} type="text" id="review" name="review" placeholder="Got something to say?  " required/>
-            </form>
-            <button class="pawButton"><i class="fa-solid fa-paw "></i> </button>
-        </div>
-    </div> -->
-<!-- 
+
     <div class="searchBarContainer">
         <div class="top">
             <img src="{% static '/img/logo.png' %}" class="profileMiniUserPicture" alt="mini user pfp"/>
-            <form action="">
-                <input onClick={handleScrollToCenter} type="text" id="makeReview" name="makeReview" placeholder="Got something to say?" required/>
-            </form>
+            <div id="makeReviewHeader" name="makeReviewHeader">Got something to say?</div>
             <button class="pawButton"><i class="fa-solid fa-paw "></i> </button>
         </div>
-    </div> -->
-
+    </div>
 
     {% if post_list %}
+
         <h1 class="title">Your Reviews</h1>
         <div class="allReviewPostsParent">
             {% for post in post_list %}
@@ -142,6 +138,17 @@
     
     {% endif %}
 </div>
+
+
+<script>
+    
+    //makepost from the thing in profile
+    const makeReviewHeader = document.getElementById("makeReviewHeader");
+    makeReviewHeader.addEventListener("click", ()=>{
+        document.querySelector(".makeReviewDiv").style.display = "flex";
+    });
+
+</script>
 
    
 {% endblock %}

@@ -1,0 +1,189 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.loginbody {
+    font-family: "Inter", sans-serif;
+    height: 100%;
+    background-color: #F4D3A1;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+.loginHr {
+    border-bottom: 3px solid #cc8033;
+    width: 60px;
+    margin-bottom: 30px;
+}
+.loginmain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.loginfirst_second {
+    width: 50%;
+}
+
+
+.loginIMGContainer{
+    width: 50%; 
+    height:100vh; 
+    min-height:800px; 
+    
+    background-color: #cc8033;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginIMGContainer img {
+    height: 80%; 
+
+}
+
+.logincontent {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px;
+
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 50px -30px;
+    
+    width: 28%;
+}
+
+.logincontent h1 {
+    font-size: 50px;
+    color: rgb(182, 106, 29);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.logincontent a {
+    margin-left: auto;
+}
+
+.loginlogo {
+    margin-bottom: 15px;
+    font-size: 50px;
+}
+
+.loginlogo a {
+    margin: 20px;
+    color: blue;
+}
+
+.loginsignin {
+    margin: 20px;
+}
+
+.loginform {
+    width: 100%;
+
+}
+
+.loginform input {
+    width: 90%;
+    border-radius: 10px;
+    padding: 15px;
+    border-width: 1px;
+    margin-bottom: 10px;
+}
+
+.loginfirst_input {
+    margin: 20px 0;
+}
+
+.loginremember {
+    display: flex;
+    justify-content: space-between; /* Spread items apart horizontally */
+    align-items: center; /* Align items vertically in the center */
+    gap: 50px;
+  
+}
+
+.loginremember .left {
+    display: flex; /* Use flexbox for left side */
+    align-items: baseline; /* Align items vertically in the center */
+    width: 100px;
+}
+
+.loginremember .left p {
+    white-space: nowrap; /* Prevent text from wrapping */
+
+}
+
+.loginremember .left input {
+    vertical-align: middle; /* Align the checkbox vertically with text */
+    margin-right: 5px; /* Add some spacing between the checkbox and text */
+}
+
+.loginremember .right a {
+    color: rgb(182, 106, 29); /* Apply color to "Forgot Password?" text */
+}
+
+.login_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0 20px 0;
+}
+
+.login_button button {
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(182, 106, 29);
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+
+
+.loginterms {
+    font-size: 15px;
+    display: flex; /* Add Flexbox container */
+    justify-content: space-between; /* Spread items apart horizontally */
+    align-items: center; /* Align items vertically in the center */
+    width: 100%;
+    margin-top: 10px 0;
+    padding: 0;
+
+    
+}
+
+.loginterms span b{
+    color: rgb(182, 106, 29);
+}
+
+.signupterms {
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    color: rgb(182, 106, 29);
+    padding-bottom: 20px;
+
+}
+
+.signupterms a span b{
+    color: rgb(182, 106, 29);
+}
+
+.signupterms a span{
+    color: rgb(182, 106, 29);
+}
+

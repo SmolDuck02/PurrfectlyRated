@@ -1,0 +1,65 @@
+
+
+
+{% load static %}
+
+    <div class="makeReviewDiv">
+        <div class="makeReviewForm">
+          
+            <div class="headerPost">
+                <img src="{% static '/img/logo.png' %}" class="profileMiniUserPicture" alt="mini user pfp"/>
+                <div class="userPostDetails">
+                    <h2>{{ user.username | title }}</h2>
+                </div>
+                <i id="cancelPostIcon" class="fa-solid fa-x" style="cursor: pointer;"></i>
+    
+                <!-- <i class="fa-solid fa-ellipsis fa-lg" style="color: #cc8033;"></i> -->
+            </div>
+            <form action="/add_post/{{ from_page }}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="descriptionPost">
+                    <textarea id="description" name="description" style="width: 100%; background-color:#ffead1;  height : 20px; padding: 10px; border: none;" placeholder="Speak Now..."></textarea>
+                    <!-- <input id="postDescription" name="postDescription" type="text"  style="white-space: pre-wrap;" placeholder="Speak Now..." required> -->
+                </div>
+                
+                <div class="imagesAddPost">
+                    <i class="fa-solid fa-image fa-lg" >&nbsp; Add Images</i>
+                    <input type="file" id="uploadImageInput" name="uploadImageInput" accept="image/*" style="display: none;" />
+                </div>
+                <button type="submit" id="publishReviewButton">Publish Review</button>
+            </form>
+                
+        </div>
+    </div>
+
+    <script>
+
+        const makeReviewDiv = document.querySelector(".makeReviewDiv");
+        
+        document.getElementById("cancelPostIcon").addEventListener("click", ()=>{
+            makeReviewDiv.style.display = "none";
+            makeReviewDiv.querySelector('[name="description"]').value = '';
+            makeReviewDiv.querySelector(".imagesAddPost").style.backgroundImage = '';
+        });
+
+
+        const imageInputDiv = document.querySelector(".imagesAddPost");
+        const imageInput = document.getElementById("uploadImageInput");
+
+        imageInputDiv.addEventListener('click', () => {
+            // Trigger the hidden file input when the div is clicked
+            imageInput.click();
+        });
+
+        imageInput.addEventListener('change', function () {
+            // Handle the selected image here
+            const selectedFile = this.files[0];
+            if (selectedFile) {
+                // You can perform actions with the selected image, e.g., display it, upload it, etc.
+                const imageURL = URL.createObjectURL(selectedFile);
+                imageInputDiv.style.backgroundImage = `url(${imageURL})`;
+            }
+        });
+
+    </script>
+

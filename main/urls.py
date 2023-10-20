@@ -11,10 +11,7 @@ urlpatterns = [
     # path('', views.test, name='test'),
     path('', views.landing, name='landing'),
     path('search/<str:search>', views.search_body, name="search_body"),
+    path('add_post/<str:param>', views.add_post, name="add_post"),
     path('update_post/<int:id>', views.update_post, name="update_post"),
-    path('delete_post/<int:id>', views.delete_post, name="delete_post"),
-    path('undelete_post/<int:id>', views.undelete_post, name="undelete_post"),
+    path('visibility_post/<int:id>', views.visibility_post, name="visibility_post"),
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

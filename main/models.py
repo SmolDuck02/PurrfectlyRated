@@ -6,7 +6,7 @@ class Posts(models.Model):
    
 
    #product_name = models.CharField(max_length=255)
-   post_picture = models.ImageField(upload_to='product_pictures/', blank=True, null=True)
+   post_picture = models.ImageField(upload_to='images/', blank=True, null=True)
    post_description = models.CharField(max_length=255)
    total_likes = models.IntegerField(null=True, blank=True)
    total_favorites = models.IntegerField(null=True, blank=True)
