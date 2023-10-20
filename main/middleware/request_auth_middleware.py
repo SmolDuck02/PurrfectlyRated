@@ -15,9 +15,9 @@ class RequestAuthMiddleware:
   
         response = self.get_response(request)
 
-        # if response.status_code == 404:
-        #     # using the built in
-        #     raise Http404 
+        if response.status_code == 404:
+            # using the built in
+            raise Http404 
         #     return render(request, '/authentication/signup.html', status=404)
             
 

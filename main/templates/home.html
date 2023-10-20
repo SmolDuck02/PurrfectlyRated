@@ -17,7 +17,7 @@
             <div class="top">
                 <img src="{% static '/img/logo.png' %}" class="profileMiniUserPicture" alt="mini user pfp"/>
                 <div id="makeReviewHeader" name="makeReviewHeader">Got something to say?</div>
-                <i class="fa-solid fa-pen fa-lg" style="color: rgb(182, 106, 29);; cursor:pointer;"></i>
+                <i class="fa-solid fa-image" style="color: rgb(182, 106, 29);"></i>
                 <!-- <button class="pawButton"><i class="fa-solid fa-paw "></i> </button> -->
             </div>
         </div>
@@ -78,11 +78,11 @@
 
                         <div class="buttonsPost">
                             <div>
-                                <i id="like-{{ post.id }}" class="fa-solid fa-arrow-up fa-xl"></i>
-                                <i id="dislike-{{ post.id }}" class="fa-solid fa-arrow-up fa-rotate-180 fa-xl"></i>
+                                <i id="like-{{ post.id }}" class="fa-solid fa-arrow-up fa-lg"></i>
+                                <i id="dislike-{{ post.id }}" class="fa-solid fa-arrow-up fa-rotate-180 fa-lg"></i>
                             </div>
-                            <i id="-{{ post.id }}" class="fa-solid fa-comment fa-xl" style="border-left: 2px solid #bdbdbd;padding: 15px;"></i>
-                            <i id="favorite-{{ post.id }}" class="fa-solid fa-heart fa-xl" style="border-left: 2px solid #bdbdbd;padding: 15px;"></i>
+                            <i id="-{{ post.id }}" class="fa-solid fa-comment fa-lg" style="border-left: 2px solid #bdbdbd;padding: 15px;"></i>
+                            <i id="favorite-{{ post.id }}" class="fa-solid fa-heart fa-lg" style="border-left: 2px solid #bdbdbd;padding: 15px;"></i>
                         </div>
                     </div>
                 </div>
@@ -186,7 +186,7 @@
 
 
         
-            const commentButtons = document.querySelectorAll(".fa-solid.fa-comment.fa-xl");
+            const commentButtons = document.querySelectorAll(".fa-solid.fa-comment.fa-lg");
             commentButtons.forEach((button) => {
                 button.addEventListener("click", (event) => {
                     event.stopPropagation();
@@ -359,7 +359,7 @@
                 button.classList.toggle('active');
             }
 
-            const likeButtons = document.querySelectorAll(".fa-solid.fa-arrow-up.fa-xl");
+            const likeButtons = document.querySelectorAll(".fa-solid.fa-arrow-up.fa-lg");
             likeButtons.forEach((button) => {
                 button.addEventListener("click", (event) => {
                     event.stopPropagation();
@@ -376,7 +376,7 @@
                 });
             });
 
-            const heartButtons = document.querySelectorAll(".fa-solid.fa-heart.fa-xl");
+            const heartButtons = document.querySelectorAll(".fa-solid.fa-heart.fa-lg");
             heartButtons.forEach((button) => {
                 button.addEventListener("click", (event) => {
                     event.stopPropagation();
