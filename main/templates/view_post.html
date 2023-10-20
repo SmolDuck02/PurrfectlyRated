@@ -1,0 +1,127 @@
+
+
+{% load static %}
+
+<div id="viewPostDivBackground-{{ post.id }}" class="viewPostDivBackground">
+    <div class="viewPostParentDiv">
+
+
+                <div class="headerPost">
+                    <img src="{% static '/img/logo.png' %}" class="profileMiniUserPicture" alt="mini user pfp"/>
+                    <div class="userPostDetails">
+                        <h2>{{ user.username | title }}</h2>
+                        <span>{{ post.datetimePublished }}</span>
+                    </div>
+                    <i id="closePostIcon-{{ post.id }}" class="fa-solid fa-x" style="cursor: pointer;"></i>
+                </div>
+
+                <div class="descriptionPost">
+                    <span>{{ post.post_description }}</span>
+                </div>
+
+                <div class="imagesPost">
+                    <img id="changeImage-{{ post.id }}" src="/media/{{ post.post_picture }}" alt="postImages">
+                </div>
+
+                <div class="buttonsPost">
+                    <div>
+                        <i class="fa-solid fa-arrow-up fa-xl"></i>
+                        <i class="fa-solid fa-arrow-up fa-rotate-180 fa-xl"></i>
+                    </div>
+                    <i class="fa-solid fa-comment fa-xl" style="border-left: 2px solid #bdbdbd;padding: 15px;"></i>
+                    <i class="fa-solid fa-heart fa-xl"  style="border-left: 2px solid #bdbdbd;padding: 15px;"></i>
+                </div>
+
+                <div class="commentsParentDiv">
+                    <div style="background-color: #f0f0f0;
+                    border-top: 2px solid #bdbdbd;
+                    padding-bottom: 10px;"
+                    >
+                        <h4 style="padding: 20px 15px 10px 15px;">
+                            Comments&gt;
+                        </h4>
+                        <div style="padding: 10px 20px;"> 
+                            <div style="
+                            display: flex;
+                            align-items: center;
+                            width: auto;
+                            gap: 15px;
+                            ">
+                                <img src="/static/img/logo.png" class="profileMiniUserPicture" alt="mini user pfp">
+                                
+                                <div type="text" id="commentInput" name="commentInput" style="
+                                    color: #696969;
+                                    background-color: white;
+                                    border: 2px solid #e1e0e0;
+                                    border-radius: 15px;
+                                    font-weight: normal;
+                                    padding: 10px 15px;
+                                    font-size: 14px;
+                                    width: 90%;
+                                "> 
+                                    comment desc
+                                </div>
+                            </div>
+                            <p style="
+                                padding-left: 3.7rem;
+                                font-size: 12px;
+                            "> 
+                                comment date
+                            </p>
+                        </div>
+                    </div>
+                
+                    <div style="
+                        background-color: white;
+                        display: flex;
+                        align-items: center;
+                        width: auto;
+                        gap: 15px;
+                        padding: 20px 20px;
+                    ">
+                        <img src="/static/img/logo.png" class="profileMiniUserPicture" alt="mini user pfp">
+                        
+                        <form id="commentForm" method="post" style="
+                            display: flex;
+                            flex-grow: 1;
+                        ">
+                            <input type="text" id="commentInput" onkeypress="handleOnEnter(event)" name="commentInput" placeholder="Comment your purpose in life...  ★" style="
+                            color: #696969;
+                            border: 2px solid #e1e0e0;
+                            border-radius: 15px;
+                            font-weight: normal;
+                            padding: 10px 15px;
+                            font-size: 14px;
+                            width: 90%;
+                            "> 
+                        </form>
+                        <i class="fa-solid fa-paw fa-xl"></i>
+                    </div>
+                </div>
+     
+    </div>
+</div>
+
+
+<script>
+    //    document.querySelectorAll(".fa-solid.fa-x").forEach((button) => {
+    //         button.addEventListener("click", (event) => {
+    //             event.stopPropagation();
+    //             const clickedId = event.target.id;
+    //             const postId = clickedId.split("-")[1];
+
+    //             document.getElementById(`viewPostDivBackground-${postId}`).style.display = "none";
+    //         });
+    //     });
+
+
+
+    //another approach - tedious
+    // let post_id = 0;
+    // function updatePostId(newPostId) {
+    //     post_id = newPostId;
+    //     console.log("pol", post_id);
+    // }
+    // console.log(post_id);
+</script>
+

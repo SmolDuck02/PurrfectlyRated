@@ -1,0 +1,244 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: "Lexend", sans-serif;
+    background-color: #ffead1;
+}
+
+
+
+.masterNav {
+    background-color:  #F4DCC0 ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 50px;
+}
+
+  
+nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-items: center;
+    gap: 40px;
+    font-size: 1em;
+
+    
+}
+
+nav ul li {
+    cursor: pointer;
+    padding: 5px;
+}
+
+
+nav .icons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+
+
+    width: 400px;
+}
+
+nav .icons input{
+    border: 2px solid #f0f0f0;
+    border-radius: 25px;
+    background-color: #f0f0f0;
+    /* #f9f9f9 */
+    font-weight: normal;
+    height: 15px;
+    padding: 8px;
+    font-size: 15px;
+    flex-grow: 1;
+    outline: none;
+}
+
+
+nav .icons .inputDiv{
+    border: 2px solid #f0f0f0;
+    border-radius: 25px;
+    background-color: #f0f0f0;
+    /* #f9f9f9 */
+    font-weight: normal;
+    padding-left: 15px;
+    height: auto;
+    font-size: 15px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+   
+}
+
+
+/* .fa.fa-search.transparent-icon {
+    position: absolute;
+    top: auto;
+    right: 26em;
+} */
+
+.transparent-icon {
+    color: rgb(85, 85, 85);
+}
+
+
+.logo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 1em;
+
+    width: 400px;
+
+}
+
+.logo img {
+    width: 30px;
+}
+
+.logo p {
+    font-weight: 550;
+}
+
+.logo .rated {
+    color: brown;
+}
+
+.noStyle {
+    border: none;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+.settingsDiv {
+
+    display: block;
+    visibility: hidden;
+
+    transition: padding 0.2s ease, height 0.2s ease, visibility 0.1s ease;
+    position: absolute; 
+    right: 1.5%;
+    /* left: 80%; Set the horizontal position (x) in pixels */
+    /* top: 7.7%; Set the vertical position (y) in pixels */
+    /* Additional styling properties for your dropdown menu */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(189, 157, 157, 0.1);
+    /* Other styles like width, height, etc. */
+    width: auto;
+    height: 1px;
+    padding: 0px;
+    border-radius: 0 0px 10px 10px;
+    gap: 5px;
+
+    z-index: 1000; 
+    /* Ensure the dropdown appears above other elements */
+    /* Add any other styles you need */
+
+  }
+
+  .settingsDiv.active {
+    height: 120px;
+    padding: 10px;
+    visibility: visible; /* or any other appropriate display value */
+}
+
+
+  .settingsDiv div {
+    visibility: hidden;
+    transition: visibility 0.05s ease;
+    border-radius: 5px;
+    padding: 10px 10px;
+    cursor: pointer;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .settingsDiv.active div {
+    visibility: visible; /* Show the nested div elements */
+}
+  
+
+  .settingsDiv div:hover {
+    background-color: #f0f0f0; /* Change the background color when hovering */
+}
+
+
+
+.buttonFillStyle {
+    width: auto;
+    border-radius: 8px;
+    border: 2px solid rgb(182, 106, 29);
+    background-color: rgb(182, 106, 29);
+    color: white;
+    font-size: 15px;
+    padding: 8px;
+    cursor: pointer;
+    font-family: 'Lexend', sans-serif;
+   
+}
+
+
+.buttonBorderStyle {
+    width: auto;
+    border-radius: 8px;
+    border: 2px solid rgb(182, 106, 29);
+    background-color: transparent;
+    color: black;
+    font-size: 15px;
+    padding: 8px;
+    cursor: pointer;
+    font-family: 'Lexend', sans-serif;
+   
+}
+
+
+.deleteAccountDiv {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed; /* Use 'fixed' instead of 'absolute' to keep it centered even when scrolling */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    margin: auto; /* Centers the form */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(66, 37, 34, 0.3);
+    z-index: 999;
+}
+
+.deleteAccountContent {
+    background-color: #fff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    color: rgb(182, 106, 29);
+    gap: 30px;
+}
+
+.buttonsDiv{
+    display: flex;
+    gap: 15px;
+}

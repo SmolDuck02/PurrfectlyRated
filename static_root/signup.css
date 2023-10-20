@@ -1,0 +1,150 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.signupBody {
+    font-family: "Inter", sans-serif;
+    height: 100%;
+    background-color: #F4D3A1;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.imageContainer {
+    width: 50%; 
+    height:100vh; 
+    min-height:800px; 
+    
+    background-color: #cc8033;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.imageContainer img {
+    height: 80%;
+   
+}
+
+
+
+
+.signupHr {
+    border-bottom: 3px solid #cc8033;
+    width: 60px;
+    margin-bottom: 40px;
+}
+
+.signupmain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.signupimage {
+    width: 100%;
+}
+
+
+.signupimg {
+    background-color: rgb(182, 106, 29);
+    width: 100%;
+    
+}
+
+
+
+.signupcontent {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+ 
+    box-shadow: 0 0 50px -30px;
+
+    width: 28%;
+    
+}
+
+.signupcontent h1 {
+    font-size: 50px;
+    color: rgb(182, 106, 29);
+    margin-bottom: 10px;
+}
+
+.signupcontent a {
+    margin-left: auto;
+}
+
+
+
+.signupform {
+    width: 100%;
+    
+   
+}
+
+.signupform input {
+    width: 90%;
+    border-radius: 10px;
+    padding: 15px;
+    border-width: 1px;
+    margin-bottom: 10px;
+}
+
+
+
+
+.signup_button {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin: 40px 0 20px 0;
+    
+}
+
+.signup_button button {
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(182, 106, 29);
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    cursor: pointer;
+    
+}
+
+
+
+.signupterms {
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    color: rgb(182, 106, 29);
+
+}
+
+.signupterms a span b{
+    color: rgb(182, 106, 29);
+}
+
+.signupterms a span{
+    color: rgb(182, 106, 29);
+}
+
+
+

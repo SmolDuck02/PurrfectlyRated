@@ -32,7 +32,7 @@
 
     background-color: #ffffff;
     box-shadow: 0 0 50px -50px;
-    height: auto;
+    height: 45px;
     width: 40%;
     margin: 0 auto;
     margin-top: 10px;
@@ -43,28 +43,38 @@
     color: #696969;
     position: relative;
     z-index: 9000px;
-
-    border: none; /* Remove all borders */
-    border-bottom: 2px solid #696969; 
+    border: none;
+   
     
 }
 
-.navigateContentParent h2{
-    font-size: large;
-    font-weight: normal;
+.navigateContentParent div{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin:  0 auto;
-    height: 100%;
-    /* background-color: #696969; */
-    flex-grow: 1;
+    height: auto;
+    width: 100%;
     cursor: pointer;
-    padding-top: 15px;
-    padding-bottom: 20px;
+
 }
 
-.navigateContentParent h2:hover{
+.navigateContentParent h2{
+    user-select: none;
+    width: auto;
+    font-size: large;
+    font-weight: normal;
+    height: 100%;
+    cursor: pointer;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+.navigateContentParent div.active h2{
+    border-bottom: 4px solid #b2681c;
+    color: #b2681c;
+}
+
+.navigateContentParent div:hover{
     background-color: #e0e0e0;
 }
 
@@ -84,7 +94,7 @@
 
 .allReviewPostsParent i {
     cursor: pointer;
-    color: #cc8033;
+    color: #696969;
 }
 
 
@@ -405,13 +415,14 @@
     /* background-color: aquamarine; */
 }
 
-.top input {
-    border: 1px solid #f0f0f0;
-    border-radius: 50px;
-    background-color: #f9f9f9;
-    font-weight: bold;
+.top div {
+    color: #696969;;
+    border-bottom: 2px solid #e1e0e0;
+    border-radius: 8px;
+   
+    font-weight: normal;
     padding: 10px 25px;
-    font-size: 15px;
+    font-size: 14px;
     width: 90%; /* Set the input to take up 100% of the available width */
 }
 
@@ -458,3 +469,8 @@
    
 }
 
+
+
+.fa-solid.fa-arrow-up.fa-xl.active, .fa-solid.fa-heart.fa-xl.active {
+    color:rgb(182, 106, 29);
+}

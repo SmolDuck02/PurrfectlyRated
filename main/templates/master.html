@@ -5,6 +5,7 @@
 
 <head>
   <title>PurrfectlyRated</title>
+  <link rel="icon" href="{% static '/img/logo.png' %}" type="image/x-icon">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link
@@ -17,7 +18,7 @@
   <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
 
 
-  <link rel="stylesheet" href="{% static 'master.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'master.css' %}">
 
   {% block head %}
   {% endblock %}
@@ -30,13 +31,14 @@
         <h1>Purrfectly<span class="rated">Rated</span></h1>
     </div>
     <ul>
-        <li><a href="/authentication/login">Home</a></li>
+
+        <li><a href="/home">Home</a></li>
         <li>About Us</li>
         <li>Collections</li>
         <li>Gallery</li>
     </ul>
     <div class="icons">
-      {% if session_data.id > 0 %}
+      {% if session_data.id %}
         <div class="inputDiv">
           <i class="fa fa-search transparent-icon"></i> 
           <form id="searchForm" method="post">
@@ -52,15 +54,7 @@
         <button id="adminButton" class="buttonFillStyle">Admin</button>
         <button id="loginButton" class="buttonBorderStyle">Login</button>
       {% endif %}
-      
-        <!-- <i class="fa fa-search transparent-icon"></i> -->
-        <!-- {% if session_data.id %}
-          <div><h1>BAWAOWOAOAWOA</h1></div>
 
-        {% else %}
-
-
-        {% endif %} -->
         
     </div>
   </nav>

@@ -1,0 +1,47 @@
+.viewPostDivBackground {
+    display: none;
+    align-items: center;
+    position: fixed; /* Use 'fixed' instead of 'absolute' to keep it centered even when scrolling */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    margin: auto; /* Centers the form */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(66, 37, 34, 0.3);
+    z-index: 999;
+}
+
+.viewPostParentDiv {
+    background-color: #ffffff;
+    box-shadow: 0 0 50px -50px;
+    height: auto;
+    width: 35%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+
+    color: #696969;
+    max-height: 700px;
+}
+
+
+.commentsParentDiv  {
+    background-color: #ffffff;
+    box-shadow: 0 0 50px -50px;
+    height: auto;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 0px 0px 5px 5px;
+    display: flex;
+    flex-direction: column;
+    color: #696969;
+    max-height: 700px;
+}
+
+
+
