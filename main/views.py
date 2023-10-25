@@ -1,3 +1,8 @@
+
+
+
+
+
 from datetime import datetime
 from django.db.models import Q
 from django.shortcuts import render, redirect
@@ -27,12 +32,12 @@ def home(request):
 
   user = Users.objects.get(id=request.session['user_id'])
   product_list = Product.objects.all().select_related('product_category').values(
-  'id', 'product_picture', 'product_name', 'product_description', 'total_likes', 'total_favorites', 'total_reviews',
+  'id', 'product_picture', 'product_name', 'product_description', 'total_likes','total_favorites', 'total_reviews',
   'product_category__category_name', 'product_category__category_icon'
   )
 
   post_list = Posts.objects.filter(Q(is_shown=True)).order_by('-datetimePublished').select_related('postUser').values(
-    'id', 'postUser__id', 'postUser__username', 'post_picture', 'post_description', 'total_likes', 'total_favorites', 'datetimePublished'
+    'id', 'postUser__id', 'postUser__username', 'post_picture', 'post_description', 'total_likes','total_dislikes', 'total_favorites', 'datetimePublished'
     )
 
   dt = datetime.now()
@@ -59,7 +64,7 @@ def profile(request):
   user = Users.objects.get(id=request.session['user_id'])
 
   post_list = Posts.objects.filter(Q(postUser__id = request.session['user_id'])).select_related('postUser').values(
-    'id', 'postUser__id', 'postUser__username', 'post_picture', 'post_description', 'total_likes', 'total_favorites', 'datetimePublished'
+    'id', 'postUser__id', 'postUser__username', 'post_picture', 'post_description', 'total_likes','total_dislikes','total_favorites', 'datetimePublished'
   )
 
   return render(request, 'profile.html', {"user": user, "post_list": post_list})
@@ -69,7 +74,7 @@ def profile(request):
 def search_body(request, search):
 
   post_list = Posts.objects.filter(Q(post_description__contains =search) | Q(post_description__startswith =search[0])).select_related('postUser').values(
-    'id', 'postUser__id', 'postUser__username', 'post_picture', 'post_description', 'total_likes', 'total_favorites', 'datetimePublished'
+    'id', 'postUser__id', 'postUser__username', 'post_picture', 'post_description', 'total_likes','total_dislikes','total_favorites', 'datetimePublished'
   )
   
   # | Q(product_description__contains=search) | Q(product_description__startswith =search[0]
@@ -132,3 +137,30 @@ def visibility_post(request, id):
   post.save()
   
   return redirect('/home')
+
+
+def update_like(request, post_id):
+    if request.method == 'POST':
+    
+        post = Posts.objects.get(id=post_id)
+        post.total_likes += 1
+        post.save()
+
+        return JsonResponse({'likes': post.total_likes})
+
+   
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+
+
+def update_dislike(request, post_id):
+    if request.method == 'POST':
+        post = Posts.objects.get(id=post_id)
+
+        post.total_dislikes += 1
+        post.save()
+
+        return JsonResponse({'dislikes': post.total_dislikes})
+
+    return JsonResponse({'error': 'Invalid request'}, status=400)

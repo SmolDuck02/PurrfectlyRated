@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 app_name = 'main'
 
+
 urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('home/', views.home, name='home'),
@@ -14,4 +15,6 @@ urlpatterns = [
     path('add_post/<str:param>', views.add_post, name="add_post"),
     path('update_post/<int:id>', views.update_post, name="update_post"),
     path('visibility_post/<int:id>', views.visibility_post, name="visibility_post"),
+    path('update_like/<int:post_id>/', views.update_like, name='update_like'),
+    path('update_dislike/<int:post_id>/', views.update_dislike, name='update_dislike'),
 ]
