@@ -1,0 +1,236 @@
+{% extends "master.html" %}  {% load static %} {% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'search_body.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'home.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'view_post.css' %}" />
+{% endblock %} {% block content %} 
+
+{% if interactions %}
+       
+
+<div class="searchContentContainer" style="
+    display: flex;
+      flex-direction: column;
+      width: 40%;
+      margin: 90px auto;
+      height: 100vh;">
+  <h1 style="
+  color: #624738;
+  margin-top: 50px;
+">#Favoritess</h1>
+
+ 
+
+<div class="allReviewPostsParent">
+      {% for interaction in interactions %}  {% with post_id=interaction.post.id post=interaction.post post_comments=interaction.post.comments_set.all%}{%include "view_post.html"%} {%endwith%}
+
+          
+      <div id="reviewPostContainer-{{ interaction.post.id }}" data="{{ post }}">
+          <div class="after">
+              <h3>This post has been deleted!</h3>
+              <form action="/undelete_post/{{ interaction.post.id }}" method="post">
+              {% csrf_token %}
+              <i
+                  id="undoDeletePostButton-{{ interaction.post.id }}"
+                  class="fa-solid fa-arrow-rotate-left fa-lg"
+              ></i>
+              </form>
+          </div>
+
+          <div class="before">
+              <div class="headerPost">
+              <img
+                  src="{% static '/img/logo.png' %}"
+                  class="profileMiniUserPicture"
+                  alt="mini user pfp"
+              />
+              <div class="userPostDetails">
+                  <h2>{{ interaction.post.post_user.username | title }}</h2>
+                  <span>{{ interaction.post.datetime_published }}</span>
+              </div>
+              {% if interaction.post.post_user_id == request.session.user_id %}
+                  <i id="makeChangesButton-{{ interaction.post.id }}" class="fa-solid fa-pen"></i>
+              {% endif %}
+
+              <div style="width: 10px"></div>
+              {% if interaction.post.post_user_id == request.session.user_id %}
+                  <form id="deletePostForm-{{ interaction.post.id }}" action="/delete_post/{{ interaction.post.id }}" method="post">
+                      {% csrf_token %}
+                      <i id="deletePostIcon-{{ interaction.post.id }}" class="fa-solid fa-x fa-lg"></i>
+                  </form>
+              {% endif %}
+              </div>
+
+              <div class="descriptionPost">
+              <span>{{ interaction.post.post_description }}</span>
+              </div>
+
+              <div class="imagesPost">
+              <img
+                  id="changeImage-{{ interaction.post.id }}"
+                  src="/media/{{ interaction.post.post_picture }}"
+                  alt="postImages"
+              />
+              </div>
+
+              <div class="buttonsPost" style="display: flex; justify-content: center">
+              <div
+                  style="
+                  display: flex;
+                  flex-grow: 0.7;
+                  justify-content: center;
+                  align-items: center;
+                  border-right: 2px solid #bdbdbd;
+                  padding: 6px;
+                  "
+              >
+                  <form
+                  action=""
+                  method="post"
+                  style="display: flex; justify-content: center; align-items: center"
+                  >
+                  <i
+                      id="like-{{ interaction.post.id }}"
+                      class="fa-solid fa-arrow-up fa-lg"
+                      style="margin-right: 0"
+                  ></i>
+                  <span
+                      id="like-count-{{ interaction.post.id }}"
+                      style="width: fit-content; margin-left: 5px; margin-right: 20px"
+                      >{{ interaction.post.total_likes|default:"" }}</span
+                  >
+
+                  <i id="dislike-{{ interaction.post.id }}" class="fa-solid fa-arrow-up fa-rotate-180 fa-lg"></i>
+                  <span
+                      id="dislikes-count-{{ interaction.post.id }}"
+                      style="width: fit-content; margin-left: 5px; margin-right: 10px"
+                      >{{ interaction.post.total_dislikes }}</span
+                  >
+                  </form>
+              </div>
+              <div
+                  style="
+                  display: flex;
+                  flex-grow: 1;
+                  justify-content: center;
+                  align-items: center;
+                  border-right: 2px solid #bdbdbd;
+                  padding: 6px ;
+                  /* height: 20px; */
+                  "
+              >
+                  <i id="-{{ interaction.post.id }}" class="fa-solid fa-comment fa-lg" style="height: fit-content"></i>
+                  </i>
+                  <span
+                  id="comment-count-{{ interaction.post.id }}"
+                  style="width: fit-content; margin-left: 5px; margin-right: 10px"
+                  >{{ interaction.post.total_likes|default:"" }}</span
+                  >
+              </div>
+
+              <div style="display: flex; flex-grow: 1; align-items: center; justify-content: center">
+                  <i
+                  id="favorite-{{ interaction.post.id }}"
+                  class="fa-solid fa-heart fa-lg"
+                  style="width: fit-content"
+                  ></i>
+                  <span
+                  id="favorite-count-{{ interaction.post.id }}"
+                  style="width: fit-content; margin-left: 5px; margin-right: 10px"
+                  >{{ interaction.post.total_favorites|default:"" }}</span
+                  >
+              </div>
+              </div>
+          </div>
+          </div>
+
+          <!-- MAKE CHANGES TO POST POPOUT -->
+          <div id="makeChangesDiv-{{ interaction.post.id }}">
+          <div class="makeReviewForm">
+              <div class="before">
+              <div class="headerPost">
+                  <img
+                  src="{% static '/img/logo.png' %}"
+                  class="profileMiniUserPicture"
+                  alt="mini user pfp"
+                  />
+                  <div class="userPostDetails">
+                  <h2>{{ user.username | title }}</h2>
+                  </div>
+                  <i id="cancelPostIcon-{{ interaction.post.id }}" class="fa-solid fa-x" style="cursor: pointer"></i>
+
+                  <!-- <i class="fa-solid fa-ellipsis fa-lg" style="color: #cc8033;"></i> -->
+              </div>
+              <form
+                  id="makeChangesForm-{{ interaction.post.id }}"
+                  class="makeChangesForm"
+                  action="/update_post/{{ interaction.post.id }}"
+                  method="post"
+                  enctype="multipart/form-data"
+              >
+                  {% csrf_token %}
+                  <div class="descriptionPost">
+                  <textarea
+                      id="description"
+                      name="description"
+                      style="
+                      width: 100%;
+                      min-width: 100%;
+                      min-height: 20px;
+                      background-color: #ffead1;
+                      height: 20px;
+                      padding: 10px;
+                      border: none;
+                      "
+                      placeholder="Speak Now..."
+                  >
+                      {{ interaction.post.post_description }}</textarea
+                  >
+                  <!-- <input id="postDescription" name="postDescription" type="text"  style="white-space: pre-wrap;" placeholder="Speak Now..." required> -->
+                  </div>
+
+                  <div id="imagesChangePost-{{ interaction.post.id }}" class="imagesChangePostDiv">
+                  <i class="fa-solid fa-image fa-lg">&nbsp; Add Images</i>
+                  <input
+                      type="file"
+                      id="changeImageInput-{{ interaction.post.id }}"
+                      name="changeImageInput"
+                      accept="image/*"
+                      style="display: none"
+                  />
+                  </div>
+                  <button type="submit" id="publishReviewButton">Save Changes</button>
+              </form>
+              </div>
+          </div>
+          </div>
+
+      {% endfor %}
+      <div style="margin: 0 auto; margin-bottom: 30px; color: #7e7e7e"> end </div>
+  </div>
+    
+  {%else %}
+   <div class="noResults" style="    display: flex;
+    justify-content: center;
+    height: 100vh;
+
+    width: 100%;
+    margin: 0 auto;
+    color: #b3b3b3;
+    align-items: center; 
+    
+    /* background-color: #f0f0f0; */
+    ">
+            <p>You Have No Favorites.</p>
+        </div>
+    
+    {% endif %}
+    
+     {{ interaction_toList |json_script:"interaction_toList" }} {{user_list|json_script:"user_list"}}
+
+        
+        <script src="{% static 'global.js' %}"></script>
+        <script src="{% static 'buttons_setup.js' %}"></script>
+        <script src="{% static 'buttons_interaction.js' %}"></script>
+        <script src="{% static 'comment_interaction.js' %}"></script>
+
+    {%endblock%}

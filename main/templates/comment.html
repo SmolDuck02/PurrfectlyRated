@@ -1,0 +1,78 @@
+{% load static %}
+
+<div class="commentContain" style="padding: 10px 20px; width: 100%">
+  <div style="display: flex; align-items: center; width: auto; gap: 15px">
+    <img src="/static/img/logo.png" class="profileMiniUserPicture" alt="mini user pfp" />
+
+    <div
+      style="
+        color: #696969;
+        background-color: white;
+        border: 2px solid #e1e0e0;
+        border-radius: 15px;
+        font-weight: normal;
+        padding: 10px 15px;
+        font-size: 14px;
+        width: 90%;
+      "
+    >
+      <p style="font-size: 10px; color: #888888; padding-bottom: 3px">
+        {{ comment.comment_user.username }}
+      </p>
+      <input
+        disabled
+        type="text"
+        id="userCommentInput-{{ comment.id }}"
+        name="userCommentDiv"
+        style="
+          color: #696969;
+          border: none;
+          background-color: transparent;
+          font-weight: normal;
+          padding: 5px 0px;
+          font-size: 14px;
+          width: 100%;
+        "
+        onfocus="this.style.backgroundColor = '#fafafa'; this.style.border = '0'; "
+        value="{{ comment.comment_description }}"
+      />
+    </div>
+  </div>
+  <div
+    class="detailsDiv"
+    style="
+      display: flex;
+      gap: 5px;
+      width: 80%;
+      margin-left: auto;
+      margin-right: 5%;
+      height: auto;
+      align-items: center;
+    "
+  >
+    <button
+      id="reply-comment-{{ comment.id}}"
+      class="reply-comment noStyle"
+      style="color: #696969; font-size: 12px"
+    >
+      Reply
+    </button>
+    <p>&bull;</p>
+    <p style="font-size: 12px; margin-right: auto">{{ comment.datetime_published }}</p>
+
+    <button
+      id="edit-comment-{{ comment.id}}"
+      class="edit-comment noStyle"
+      style="color: #696969; font-size: 12px"
+    >
+      {% if comment.comment_user.id == request.session.user_id %} Edit {% endif %}
+    </button>
+    <button
+      id="delete-comment-{{ comment.id}}"
+      class="delete-comment noStyle"
+      style="color: #696969; font-size: 12px"
+    >
+      {% if comment.comment_user.id == request.session.user_id %} Delete {% endif %}
+    </button>
+  </div>
+</div>

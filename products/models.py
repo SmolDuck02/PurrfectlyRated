@@ -10,8 +10,10 @@ class ProductCategory(models.Model):
 class Users(models.Model):
   username = models.CharField(max_length=255)
   password = models.CharField(max_length=255)
-  isCurrentUser = models.BooleanField(default=False)
+  user_profile =  models.ImageField(upload_to='user_profiles/', blank=True, null=True)
+  bio = models.CharField(max_length=255, null=True, blank=True)
 
+  
   def __str__(self):
     return self.username + " " + self.password
 

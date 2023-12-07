@@ -1,127 +1,275 @@
-
-
 {% load static %}
 
 <div id="viewPostDivBackground-{{ post.id }}" class="viewPostDivBackground">
-    <div class="viewPostParentDiv">
-
-
-                <div class="headerPost">
-                    <img src="{% static '/img/logo.png' %}" class="profileMiniUserPicture" alt="mini user pfp"/>
-                    <div class="userPostDetails">
-                        <h2>{{ user.username | title }}</h2>
-                        <span>{{ post.datetimePublished }}</span>
-                    </div>
-                    <i id="closePostIcon-{{ post.id }}" class="fa-solid fa-x" style="cursor: pointer;"></i>
-                </div>
-
-                <div class="descriptionPost">
-                    <span>{{ post.post_description }}</span>
-                </div>
-
-                <div class="imagesPost">
-                    <img id="changeImage-{{ post.id }}" src="/media/{{ post.post_picture }}" alt="postImages">
-                </div>
-
-                <div class="buttonsPost">
-                    <div>
-                        <i class="fa-solid fa-arrow-up fa-lg"></i>
-                        <i class="fa-solid fa-arrow-up fa-rotate-180 fa-lg"></i>
-                    </div>
-                    <i class="fa-solid fa-comment fa-lg" style="border-left: 2px solid #bdbdbd;padding: 15px;"></i>
-                    <i class="fa-solid fa-heart fa-lg"  style="border-left: 2px solid #bdbdbd;padding: 15px;"></i>
-                </div>
-
-                <div class="commentsParentDiv">
-                    <div style="background-color: #f0f0f0;
-                    border-top: 2px solid #bdbdbd;
-                    padding-bottom: 10px;"
-                    >
-                        <h4 style="padding: 20px 15px 10px 15px;">
-                            Comments&gt;
-                        </h4>
-                        <div style="padding: 10px 20px;"> 
-                            <div style="
-                            display: flex;
-                            align-items: center;
-                            width: auto;
-                            gap: 15px;
-                            ">
-                                <img src="/static/img/logo.png" class="profileMiniUserPicture" alt="mini user pfp">
-                                
-                                <div type="text" id="commentInput" name="commentInput" style="
-                                    color: #696969;
-                                    background-color: white;
-                                    border: 2px solid #e1e0e0;
-                                    border-radius: 15px;
-                                    font-weight: normal;
-                                    padding: 10px 15px;
-                                    font-size: 14px;
-                                    width: 90%;
-                                "> 
-                                    comment desc
-                                </div>
-                            </div>
-                            <p style="
-                                padding-left: 3.7rem;
-                                font-size: 12px;
-                            "> 
-                                comment date
-                            </p>
-                        </div>
-                    </div>
-                
-                    <div style="
-                        background-color: white;
-                        display: flex;
-                        align-items: center;
-                        width: auto;
-                        gap: 15px;
-                        padding: 20px 20px;
-                    ">
-                        <img src="/static/img/logo.png" class="profileMiniUserPicture" alt="mini user pfp">
-                        
-                        <form id="commentForm" method="post" style="
-                            display: flex;
-                            flex-grow: 1;
-                        ">
-                            <input type="text" id="commentInput" onkeypress="handleOnEnter(event)" name="commentInput" placeholder="Comment your purpose in life...  ★" style="
-                            color: #696969;
-                            border: 2px solid #e1e0e0;
-                            border-radius: 15px;
-                            font-weight: normal;
-                            padding: 10px 15px;
-                            font-size: 14px;
-                            width: 90%;
-                            "> 
-                        </form>
-                        <i class="fa-solid fa-paw fa-xl"></i>
-                    </div>
-                </div>
-     
+  <div class="viewPostParentDiv">
+    <div class="headerPost">
+      <img src="{% static '/img/logo.png' %}" class="profileMiniUserPicture" alt="mini user pfp" />
+      <div class="userPostDetails">
+        <h2>{{ post.post_user.username | title }}</h2>
+        <span>{{ post.datetime_published }}</span>
+      </div>
+      <i id="closePostIcon-{{ post.id }}" class="fa-solid fa-x" style="cursor: pointer"></i>
     </div>
+
+    <div class="descriptionPost">
+      <span>{{ post.post_description }}</span>
+    </div>
+
+    <div class="VPimagesPost" style="min-height: 280px">
+      <img id="changeImage-{{ post.id }}" src="/media/{{ post.post_picture }}" alt="postImages" />
+    </div>
+
+    <div class="buttonsPost" style="display: flex; justify-content: center">
+          <div
+            style="
+              display: flex;
+              flex-grow: 0.7;
+              justify-content: center;
+              align-items: center;
+              border-right: 2px solid #bdbdbd;
+              padding: 6px;
+              min-height: 30px;
+            "
+          >
+            <form
+              action=""
+              method="post"
+              style="display: flex; justify-content: center; align-items: center"
+            >
+              <i
+                id="VPlike-{{ post.id }}"
+                class="fa-solid fa-arrow-up fa-lg"
+                style="margin-right: 0"
+              ></i>
+              <span
+                id="VPlike-count-{{ post.id }}"
+                style="width: fit-content; margin-left: 5px; margin-right: 20px"
+                >{{ post.total_likes|default:"" }}</span
+              >
+
+              <i id="VPdislike-{{ post.id }}" class="fa-solid fa-arrow-up fa-rotate-180 fa-lg"></i>
+              <span
+                id="VPdislike-count-{{ post.id }}"
+                style="width: fit-content; margin-left: 5px; margin-right: 10px"
+                >{{ post.total_dislikes }}</span
+              >
+            </form>
+          </div>
+          <div
+            style="
+              display: flex;
+              flex-grow: 1;
+              justify-content: center;
+              align-items: center;
+              border-right: 2px solid #bdbdbd;
+              padding: 6px 0;
+              min-height: 30px;
+            "
+          >
+            <i  class="fa-solid fa-comment fa-lg" style="height: fit-content"></i>
+            </i>
+            <span
+              
+              style="width: fit-content; margin-left: 5px; margin-right: 10px"
+              >{{ post.total_likes|default:"" }}</span
+            >
+          </div>
+
+          <div style="display: flex; flex-grow: 1; align-items: center; justify-content: center">
+            <i
+              id="VPfavorite-{{ post.id }}"
+              class="fa-solid fa-heart fa-lg"
+              style="width: fit-content"
+            ></i>
+            <span
+              id="VPfavorite-count-{{ post.id }}"
+              style="width: fit-content; margin-left: 5px; margin-right: 10px"
+              >{{ post.total_favorites|default:"" }}</span
+            >
+          </div>
+        </div>
+
+
+    <!-- <div class="buttonsPost" style="min-height: 50px">
+      <div>
+        <i id="VPlike-{{ post.id }}" class="fa-solid fa-arrow-up fa-lg"></i>
+        <span
+          id="VPlike-count-{{ post.id }}"
+          style="min-width: 40px; max-width: 40px; margin-left: 5px; margin-right: 10px"
+          >{{ post.total_likes|default:"" }}</span
+        >
+
+        <i id="VPdislike-{{ post.id }}" class="fa-solid fa-arrow-up fa-rotate-180 fa-lg"></i>
+        <span
+          id="VPdislike-count-{{ post.id }}"
+          style="min-width: 40px; max-width: 40px; margin-left: 5px; margin-right: 10px"
+          >{{ post.total_dislikes|default:"" }}</span
+        >
+      </div>
+      <i
+        class="fa-solid fa-comment fa-lg"
+        style="border-left: 2px solid #bdbdbd; padding: 15px"
+      ></i>
+      <i
+        id="VPfavorite-{{ post.id }}"
+        class="fa-solid fa-heart fa-lg"
+        style="border-left: 2px solid #bdbdbd; padding: 15px"
+      ></i>
+      <span
+        id="VPfavorite-count-{{ post.id }}"
+        style="min-width: 40px; max-width: 40px; margin-left: 5px; margin-right: 10px"
+        >{{ post.total_favorites|default:"" }}</span
+      >
+    </div> -->
+
+    <div class="commentsParentDiv">
+      <div
+        id="actualCommentsContainer-{{ post.id }}"
+        style="
+          background-color: #f0f0f0;
+          border-top: 2px solid #bdbdbd;
+          padding-bottom: 10px;
+          max-height: 190px;
+          overflow-y: auto;
+        "
+      >
+        <h4 style="padding: 20px 15px 10px 15px">Comments :&gt;</h4>
+
+        {% for comment in post.comments.all %}
+        {% include 'comment.html' with comment=comment%}
+        <div id="repliesContainer-{{comment.id}} class="repliesContainer">
+        {% for reply in comment.replies.all %}
+         <div id="repliesElement-{{comment.id}}" style="display: flex;align-items: center;width: 95%;margin-left: 5%;">
+          <i class="fa-solid fa-reply fa-rotate-180" style="height: 50px; display: flex; align-self: flex-start;"></i>
+          {% include 'comment.html' with comment=reply%}
+        </div>
+        {% endfor %}
+        </div>
+        <!-- <div class="commentContain" style="padding: 10px 20px">
+          <div style="display: flex; align-items: center; width: auto; gap: 15px">
+            <img src="/static/img/logo.png" class="profileMiniUserPicture" alt="mini user pfp" />
+
+            <div
+              style="
+                color: #696969;
+                background-color: white;
+                border: 2px solid #e1e0e0;
+                border-radius: 15px;
+                font-weight: normal;
+                padding: 10px 15px;
+                font-size: 14px;
+                width: 90%;
+              "
+            >
+              <p style="font-size: 10px; color: #888888; padding-bottom: 3px">
+                {{ comment.comment_user.username }}
+              </p>
+              <input
+                disabled
+                type="text"
+                id="userCommentInput-{{ comment.id }}"
+                name="userCommentDiv"
+                style="
+                  color: #696969;
+                  border: none;
+                  background-color: transparent;
+                  font-weight: normal;
+                  padding: 5px 0px;
+                  font-size: 14px;
+                  width: 100%;
+                "
+                onfocus="this.style.backgroundColor = '#fafafa'; this.style.border = '0'; "
+                value="{{ comment.comment_description }}"
+              />
+            </div>
+          </div>
+          <div
+            class="detailsDiv"
+            style="
+              display: flex;
+              gap: 5px;
+              width: 80%;
+              margin-left: auto;
+              margin-right: 5%;
+              height: auto;
+              align-items: center;
+            "
+          >
+            <button
+              id="reply-comment-{{ comment.id}}"
+              class="reply-comment noStyle"
+              style="color: #696969; font-size: 12px"
+            >
+              Reply
+            </button>
+            <p>&bull;</p>
+            <p style="font-size: 12px; margin-right: auto">{{ comment.datetime_published }}</p>
+
+            <button
+              id="edit-comment-{{ comment.id}}"
+              class="edit-comment noStyle"
+              style="color: #696969; font-size: 12px"
+            >
+              {% if comment.comment_user.id == request.session.user_id %} Edit {% endif %}
+            </button>
+            <button
+              id="delete-comment-{{ comment.id}}"
+              class="delete-comment noStyle"
+              style="color: #696969; font-size: 12px"
+            >
+              {% if comment.comment_user.id == request.session.user_id %} Delete {% endif %}
+            </button>
+          </div>
+
+          {% for reply in comment.replies.all %}
+          <div class="repliesContainer">
+            Hello
+          </div>
+          {% endfor %}
+        </div> -->
+        {% endfor %}
+      </div>
+
+      <div
+        style="
+          background-color: white;
+          display: flex;
+          align-items: center;
+          width: auto;
+          gap: 15px;
+          padding: 20px 20px;
+        "
+      >
+        <img src="/static/img/logo.png" class="profileMiniUserPicture" alt="mini user pfp" />
+
+        <form id="commentForm" style="display: flex; flex-grow: 1; gap: 10px">
+          {% csrf_token %}
+          <input
+            type="text"
+            id="commentInput-{{ post.id }}"
+            class="commentInputs"
+            onkeypress="handleOnEnter(event)"
+            name="commentInput"
+            placeholder="Comment your purpose in life...  ★"
+            style="
+              color: #696969;
+              border: 2px solid #e1e0e0;
+              border-radius: 15px;
+              font-weight: normal;
+              padding: 10px 15px;
+              font-size: 14px;
+              width: 90%;
+            "
+          />
+          <button
+            type="button"
+            id="submit-comment-button-{{ post.id }}"
+            class="submit-comment-button noStyle"
+          >
+            <i class="fa-solid fa-paw fa-xl"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-<script>
-    //    document.querySelectorAll(".fa-solid.fa-x").forEach((button) => {
-    //         button.addEventListener("click", (event) => {
-    //             event.stopPropagation();
-    //             const clickedId = event.target.id;
-    //             const postId = clickedId.split("-")[1];
-
-    //             document.getElementById(`viewPostDivBackground-${postId}`).style.display = "none";
-    //         });
-    //     });
-
-
-
-    //another approach - tedious
-    // let post_id = 0;
-    // function updatePostId(newPostId) {
-    //     post_id = newPostId;
-    //     console.log("pol", post_id);
-    // }
-    // console.log(post_id);
-</script>
-

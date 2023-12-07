@@ -1,121 +1,111 @@
-{% extends "master.html" %}
-{% load static %}
+{% extends "master.html" %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'landing.css' %}" />
+{% endblock %} {% block content %}
+<main style="background-color: #f4d3a1; height: 100vh">
+  <section>
+    <div class="first">
+      <div class="intro">
+        <h1>Paws & Applause:</h1>
+        <h1>Elevating Pet Product</h1>
+        <h1>Experiences!</h1>
+        <p>Our go-to destination for insightful and comprehensive reviews</p>
 
-{% block head %}
-    <link rel="stylesheet" href="{% static 'landing.css' %}">
-{% endblock %}
+        <button id="signUpButton">Sign Up Now!</button>
+      </div>
+      <img src="{% static '/img/image.png' %}" alt="This is pets!" />
+    </div>
+  </section>
 
+  <section class="second">
+    <i id="alertIcon" class="fa-solid fa-bell alert"></i>
+    <h1 id="exceedingH1">Review Pet Products!</h1>
+    <div class="parent--container">
+      <div class="container">
+        <img src="{% static '/img/petcage.png' %}" alt="This is petcage!" />
+        <div class="description">
+          <div class="info">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <span>(124)</span>
+            <i class="far fa-heart"></i>
+          </div>
+        </div>
+      </div>
 
-{% block content %}
-        <main>
-            <section>
-                <div class="first">
-                    <div class="intro">
-                        <h1>Paws & Applause:</h1>
-                        <h1>Elevating Pet Product</h1>
-                        <h1>Experiences!</h1>
-                        <p>Our go-to destination for insightful and comprehensive reviews</p>
-                    
-                        <button id="signUpButton">Sign Up Now!</button>
+      <div class="container">
+        <img src="{% static '/img/bowl.png' %}" alt="This is pet bowl!" />
+        <div class="description">
+          <div class="info">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="far fa-star"></i>
+            <span>(200)</span>
+            <i class="far fa-heart"></i>
+          </div>
+        </div>
+      </div>
 
-                    </div>
-                    <img src="{% static '/img/image.png' %}" alt="This is pets!"/>
-                </div>
-            </section>
+      <div class="container">
+        <img src="{% static '/img/food.png' %}" alt="This is pet food!" />
+        <div class="description">
+          <div class="info">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <span>(604)</span>
+            <i class="far fa-heart"></i>
+          </div>
+        </div>
+      </div>
 
-            <section class="second">
-                <h1 id="exceedingH1">Review Pet Products!</h1>
-                <div class="parent--container">
-                    <div class="container">
-                        <img src="{% static '/img/petcage.png' %}" alt="This is petcage!"/>
-                        <div class="description">
-                            <div class="info">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <span>(124)</span>
-                                <i class="far fa-heart"></i>
-                            </div>
+      <div class="container">
+        <img src="{% static '/img/bone.png' %}" alt="This is pet bone!" />
+        <div class="description">
+          <div class="info">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <span>(176)</span>
+            <i class="far fa-heart"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 
-                        </div>
-                    </div>
+<script>
+  const signUpButton = document.getElementById("signUpButton");
+  const exceeding = document.getElementById("exceedingH1"); // Change to getElementById
+  const parentContainer = document.querySelector(".parent--container");
+  const first = document.querySelector(".first");
+  const alertIcon = document.getElementById("alertIcon");
+  const copyrightDiv = document.querySelector(".copyright");
+  signUpButton.addEventListener("click", () => {
+    // Toggle the "active" class on the .settingsDiv to show/hide it
+    window.location.href = "{% url 'authentication:signup' %}";
+  });
 
-                    <div class="container">
-                        <img src="{% static '/img/bowl.png' %}" alt="This is pet bowl!"/>
-                        <div class="description">
-                            <div class="info">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <span>(200)</span>
-                                <i class="far fa-heart"></i>
-                            </div>
-         
-                        </div>
-                    </div>
+  exceeding.addEventListener("click", (event) => {
+    // Prevent the click event from propagating to the document
+    event.stopPropagation();
 
-                    <div class="container">
-                        <img src="{% static '/img/food.png' %}" alt="This is pet food!" />
-                        <div class="description">
-                            <div class="info">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <span>(604)</span>
-                                <i class="far fa-heart"></i>
-                            </div>
-        
-                        </div>
-                    </div>
-
-                    <div class="container">
-                        <img src="{% static '/img/bone.png' %}" alt="This is pet bone!"/>
-                        <div class="description">
-                            <div class="info">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <span>(176)</span>
-                                <i class="far fa-heart"></i>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <script>
-            const signUpButton = document.getElementById("signUpButton");
-            const exceeding = document.getElementById("exceedingH1"); // Change to getElementById
-            const parentContainer = document.querySelector(".parent--container");
-            const first = document.querySelector(".first");
-
-            signUpButton.addEventListener("click", () => {
-                // Toggle the "active" class on the .settingsDiv to show/hide it
-                window.location.href = "{% url 'authentication:signup' %}";
-            });
-        
-            exceeding.addEventListener("click", (event) => {
-                // Prevent the click event from propagating to the document
-                event.stopPropagation();
-        
-                // Toggle the "active" class on the .settingsDiv to show/hide it
-                parentContainer.classList.toggle("active");
-                exceeding.classList.toggle("active");
-                first.classList.toggle("active");   
-            });
-        
-        </script>
-        
-
+    // Toggle the "active" class on the .settingsDiv to show/hide it
+    parentContainer.classList.toggle("active");
+    exceeding.classList.toggle("active");
+    first.classList.toggle("active");
+    alertIcon.classList.toggle("active");
+    copyrightDiv.classList.toggle("active");
+  });
+</script>
 
 {% endblock %}

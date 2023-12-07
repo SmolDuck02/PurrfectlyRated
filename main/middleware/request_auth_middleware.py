@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.http import Http404
 
 EXEMPT_URLS = ['/', '/authentication/admin/', '/authentication/login/', '/authentication/signup/']
+LOGGED_IN_EXEMPT_URLS = ['/']
 SPEC_URLS = ['/admin/', '/media/']
 
 class RequestAuthMiddleware:
@@ -20,10 +21,13 @@ class RequestAuthMiddleware:
             raise Http404 
         #     return render(request, '/authentication/signup.html', status=404)
             
-
         if 'user_id' not in request.session and request.path not in EXEMPT_URLS and not any(request.path.startswith(url) for url in SPEC_URLS):
-            print(request.path, "wut")
+            print("wut", request.path)
             return redirect('/authentication/login/')
+        
+        if 'user_id' in request.session and request.path in EXEMPT_URLS:
+            print("kaniii", request.path)
+            return redirect('/home/feed')
         # else:
         #     print("nont")
             

@@ -1,0 +1,13 @@
+{% extends "master.html" %} {% load static %} {% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'search_body.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'home.css' %}" />
+{% endblock %} {% block content %}
+
+<div
+  class="searchContentContainer"
+  style="display: flex; flex-direction: column; width: 40%; margin: 90px auto; height: 100vh"
+>
+  <h1 style="color: #624738; margin-top: 50px">#Notifications</h1>
+</div>
+<script src="{% static 'global.js' %}"></script>
+{%endblock%}

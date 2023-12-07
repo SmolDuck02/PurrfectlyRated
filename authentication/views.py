@@ -13,10 +13,9 @@ def login(request):
 
   print("Sesion User Id:", request.session.get('user_id', 'User ID not found'))
   if 'user_id' in request.session:
-     return redirect("/home")
+     return redirect("/home/feed")
   
-
-
+  
   if request.method == "POST":
     
     usernameinput = request.POST['usernamefield']
@@ -30,7 +29,7 @@ def login(request):
 
         print("Session Username", request.session['username'] )
 
-        return redirect("/home")
+        return redirect("/home/feed")
     
     except Users.DoesNotExist:
         return render(request, 'login.html', {'Error' : "User does not Exist!"})
@@ -43,7 +42,7 @@ def login(request):
 def admin(request):
 
   if 'user_id' in request.session:
-     return redirect("/home")
+     return redirect("/home/feed")
   
   if request.method == "POST":
     
@@ -56,7 +55,7 @@ def admin(request):
         request.session['username'] = user.username
         request.session['password'] = user.password
 
-        return redirect("/home")
+        return redirect("/home/feed")
    
     except Users.DoesNotExist:
         return render(request, 'admin.html', {'Error' : "User does not Exist!"})

@@ -1,0 +1,49 @@
+{% extends "master.html" %} {% load static %} {% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'search_body.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'home.css' %}" />
+{% endblock %} {% block content %}
+
+<div
+  class="searchContentContainer"
+  style="
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+    height: 100vh;
+    justify-content: center;
+  "
+>
+  <h1 style="color: #624738; margin-top: 50px">#About</h1>
+  <div
+    style="
+      background-color: white;
+      padding: 60px;
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      line-height: 1.5;
+    "
+  >
+    <span style="font-size: x-large">Project</span>
+    <span style="font-size: 70px; font-weight: bold; margin: 10px 10px 20px 10px"
+      >Purrfectly
+      <span style="color: brown">Rated</span>
+    </span>
+    <p style="text-align: justify; font-size: medium">
+      was crafted as a culmination of the team's coursework in Information Management 2 during their
+      third year at Cebu Institute of Technology - University.<br /><br />
+      Developed using the Django web framework, Python, and vanilla JavaScript, the project follows
+      the principles of a RESTful API. This platform caters to a user base that the team has
+      affectionately dubbed as "Purrfects," offering them a space to share their experiences with
+      various pet products.<br /><br />
+      The goal is to foster community learning and engagement by enabling Purrfects to articulate
+      their insights, providing valuable perspectives for the wider community.
+    </p>
+  </div>
+</div>
+<script src="{% static 'global.js' %}"></script>
+{%endblock%}

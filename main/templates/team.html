@@ -1,0 +1,132 @@
+{% extends "master.html" %} {% load static %} {% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'home.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'team.css' %}" />
+{% endblock %} {% block content %}
+
+<div class="container">
+  <h1 style="color: #624738; margin-top: 150px">#The Team</h1>
+
+  <div style="display: flex; gap: 10px">
+    <div style="width: 240px">
+      <img src="{% static '/img/J2.png' %}" class="circular-image" alt="mini user pfp" />
+      <div style="padding: 10px 5px" ;>
+        <p style="font-weight: 600">Jaybert C. Bajenting</p>
+        <p style="font-size: smaller; color: gray; margin-bottom: 10px">Tester</p>
+        <p style="font-size: smaller">Code with passion, create with purpose.</p>
+      </div>
+    </div>
+    <div style="width: 240px">
+      <img src="{% static '/img/X2.jpg' %}" class="circular-image" alt="mini user pfp" />
+      <div style="padding: 10px 5px" ;>
+        <p style="font-weight: 600">Kurt Xander M. Cabural</p>
+        <p style="font-size: smaller; color: gray; margin-bottom: 10px">UI</p>
+        <p style="font-size: smaller">Eat. Sleep. Code. Repeat.</p>
+      </div>
+    </div>
+    <div style="width: 240px">
+      <img src="{% static '/img/l.jpg' %}" class="circular-image" alt="mini user pfp" />
+      <div style="padding: 10px 5px" ;>
+        <p style="font-weight: 600">Leemar A. Paner</p>
+        <p style="font-size: smaller; color: gray; margin-bottom: 10px">UI/UX</p>
+        <p style="font-size: smaller">
+          Craft experiences that resonate, not just interfaces that impress.
+        </p>
+      </div>
+    </div>
+    <div style="width: 240px">
+      <img src="{% static '/img/u.png' %}" class="circular-image" alt="mini user pfp" />
+      <div style="padding: 10px 5px" ;>
+        <p style="font-weight: 600">Jameel Marco C. Ursonal</p>
+        <p style="font-size: smaller; color: gray; margin-bottom: 10px">Developer/UI/UX</p>
+        <p style="font-size: smaller">To be a duck on the lake.</p>
+      </div>
+    </div>
+    <div style="width: 240px">
+      <img src="{% static '/img/b.jpg' %}" class="circular-image" alt="mini user pfp" />
+      <div style="padding: 10px 5px" ;>
+        <p style="font-weight: 600">Bermar Villarazo Jr.</p>
+        <p style="font-size: smaller; color: gray; margin-bottom: 10px">Frontend</p>
+        <p style="font-size: smaller">
+          Life is like coding; embrace the bugs, appreciate the updates, and never underestimate the
+          power of a well-structured algorithm.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{% static 'global.js' %}"></script>
+{%endblock%}
+
+<!-- <div style="display: flex; flex-direction: column">
+      <img src="{% static '/img/J2.png' %}" class="circular-image" alt="mini user pfp" />
+      <img src="{% static '/img/X2.jpg' %}" class="circular-image" alt="mini user pfp" />
+      <img src="{% static '/img/l.jpg' %}" class="circular-image" alt="mini user pfp" />
+      <img src="{% static '/img/duck.jpg' %}" class="circular-image" alt="mini user pfp" />
+      <img src="{% static '/img/b.jpg' %}" class="circular-image" alt="mini user pfp" />
+    </div>
+    <img src="{% static '/img/J2.png' %}" class="spotlight" alt="mini user pfp" />
+    <div style="align-self: flex-end">
+      <h2>Jaybert Bajenting</h2>
+      <p>Tester</p>
+      <p>"Code with passion, create with purpose."</p>
+    </div> -->
+
+<!-- 
+    <div class="team-card">
+      <div class="subcontainer">
+        <img src="{% static '/img/J2.png' %}" class="circular-image" alt="mini user pfp" />
+      </div>
+      <div style="width: 80%; display: flex; flex-direction: column; gap: 15px">
+        <p style="color: gray; font-size: 14px">
+          <span style="font-weight: bold; color: black; font-size: 16px">Jaybert Bajenting</span>
+          <br />Tester
+        </p>
+        <p>“Code with passion, create with purpose.”</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="subcontainer">
+        <img src="{% static '/img/X2.jpg' %}" class="circular-image" alt="mini user pfp" />
+      </div>
+      <div style="width: 80%; display: flex; flex-direction: column; gap: 15px">
+        <p style="color: gray; font-size: 14px">
+          <span style="font-weight: bold; color: black; font-size: 16px">Kurt Xander Cabural</span>
+          <br />UI
+        </p>
+        <p>“Eat. Sleep. Code. Repeat”</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="subcontainer">
+        <img src="{% static '/img/l.jpg' %}" class="circular-image" alt="mini user pfp" />
+      </div>
+      <div style="width: 80%; display: flex; flex-direction: column; gap: 15px">
+        <p style="color: gray; font-size: 14px; font-size: 16px">
+          <span style="font-weight: bold; color: black">Leemar Paner</span>
+          <br />UI/UX
+        </p>
+        <p>"Craft experiences that resonate, not just interfaces that impress."</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="subcontainer">
+        <img src="{% static '/img/duck.jpg' %}" class="circular-image" alt="mini user pfp" />
+      </div>
+      <div style="width: 80%; display: flex; flex-direction: column; gap: 15px">
+        <p style="color: gray; font-size: 14px">
+          <span style="font-weight: bold; color: black; font-size: 16px"
+            >Jameel Marco C. Ursonal</span
+          >
+          <br />Developer/UI
+        </p>
+
+        <p>“A small duck by the lake.”</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="subcontainer">
+        <img src="{% static '/img/logo.png' %}" class="team-img" alt="mini user pfp" />
+      </div>
+      <span style="font-weight: bold">Bermar Villarozo<br />Developer</span>
+      <p>Yey</p>
+    </div> -->
