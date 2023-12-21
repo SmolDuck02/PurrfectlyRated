@@ -225,12 +225,15 @@
     
     {% endif %}
     
-     {{ interaction_toList |json_script:"interaction_toList" }} {{user_list|json_script:"user_list"}}
+    {{ interaction_toList |json_script:"interaction_toList" }} {{user_list|json_script:"user_list"}}
 
         
-        <script src="{% static 'global.js' %}"></script>
-        <script src="{% static 'buttons_setup.js' %}"></script>
-        <script src="{% static 'buttons_interaction.js' %}"></script>
-        <script src="{% static 'comment_interaction.js' %}"></script>
+     <script>
+        document.getElementById("fav-tab").classList.toggle("active");
+     </script>
+    <script src="{% static 'global.js' %}"></script>
+    <script src="{% static 'buttons_setup.js' %}"></script>
+    <script src="{% static 'buttons_interaction.js' %}"></script>
+    <script src="{% static 'comment_interaction.js' %}"></script>
 
     {%endblock%}

@@ -4,7 +4,8 @@
 {% endblock %} {% block content %}
 
 <div class="container">
-  <h1 style="color: #624738; margin-top: 150px">#The Team</h1>
+  <!-- #624738 -->
+  <h1 style="color: #a52a2a; margin-top: 150px">#The Team</h1>
 
   <div style="display: flex; gap: 10px">
     <div style="width: 240px">
@@ -54,6 +55,9 @@
     </div>
   </div>
 </div>
+<script>
+  document.getElementById("team-tab").classList.toggle("active");
+</script>
 <script src="{% static 'global.js' %}"></script>
 {%endblock%}
 

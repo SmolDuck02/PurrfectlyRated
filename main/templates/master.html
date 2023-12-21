@@ -24,24 +24,23 @@
     <nav class="masterNav">
       <div class="logo" id="logoDiv">
         <img id="AppLogo" src="{% static '/img/logo.png' %}" alt="PurrfectlyRated Logo" />
-        <h1>Purrfectly<span class="rated">Rated</span></h1>
+        <h1 style="font-size: 1.4em">Purrfectly<span class="rated">Rated</span></h1>
       </div>
 
       {% if session_data.id %}
       <div class="navigateContentParent">
-        <div id="feedContentButton">
+        <a id="feedContentButton" style="color: grey" href="/home/feed/">
           <h2>Reviews</h2>
-        </div>
-        <div id="productContentButton">
+        </a>
+        <a id="productContentButton" style="color: grey" href="/home/product/">
           <h2>Products</h2>
-        </div>
+        </a>
       </div>
       {% endif %}
 
       <div class="icons">
         {% if session_data.id %}
         <div class="inputDiv">
-          <i class="fa fa-search transparent-icon"></i>
           <form id="searchForm" method="post">
             {% csrf_token %}
             <input
@@ -49,56 +48,37 @@
               id="searchInput"
               onkeypress="handleOnEnter(event)"
               name="searchInput"
-              placeholder="Search my purpose...  &#9733;"
+              placeholder="Search..."
             />
           </form>
+          <i class="fa fa-search transparent-icon"></i>
         </div>
 
         <i class="fa-solid fa-bell"></i>
         <!-- <i style="cursor: pointer" class="fa-solid fa-moon"></i> -->
-        <i style="cursor: pointer" class="fa-solid fa-sun"></i>
+        <i  class="fa-solid fa-sun"></i>
         <!-- <i id="userButton" style="cursor: pointer" class="fa fa-user transparent-icon"></i> -->
 
         {% else %}
+        <div style="width: 40%"></div>
         <button id="adminButton" class="buttonBorderStyle">Admin</button>
         <button id="loginButton" class="buttonFillStyle">Login</button>
         {% endif %}
       </div>
     </nav>
 
-    <div class="settingsDiv">
+    <!-- <div class="settingsDiv">
       <div id="profileSubDiv"><i class="fa-solid fa-user"></i>Your Profile</div>
       <div id="deleteSubDiv"><i class="fa-solid fa-user"></i>Delete Account</div>
       <div id="logOutSubDiv"><i class="fa-solid fa-right-from-bracket"></i>Log Out</div>
-    </div>
+    </div> -->
 
-    <div class="editAccountDiv">
-      <div class="editAccountContent">
-        <h1>Edit Profile</h1>
-        <form
-          method="post"
-          action="/profile"
-          style="display: flex; flex-direction: column; gap: 8px"
-        >
-          <input placeholder="Username" name="username" id="username" />
-          <input placeholder="Bio" name="bio" id="bio" />
 
-          <div class="buttonsDiv">
-            <button id="saveEditButton" type="submit" class="buttonFillStyle">Save Changes</button>
-            <button id="cancelEditButton" type="button" class="buttonBorderStyle">Cancel</button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <div class="deleteAccountDiv">
-      <div class="deleteAccountContent">
-        <h1>Are you sure?</h1>
-        <div class="buttonsDiv">
-          <button id="confirmDeleteButton" class="buttonFillStyle">Confirm</button>
-          <button id="cancelDeleteButton" class="buttonBorderStyle">Cancel</button>
-        </div>
-      </div>
+    <!-- NOTIFICATIONS -->
+    <div class="notificationsDiv">
+      <span id="profileSubDiv"><i class="fa-solid fa-user"></i>Your Profile</span>
+      <span id="deleteSubDiv"><i class="fa-solid fa-user"></i>Delete Account</span>
+      <span id="logOutSubDiv"><i class="fa-solid fa-right-from-bracket"></i>Log Out</span>
     </div>
 
     {% if session_data.id %}
@@ -111,9 +91,7 @@
             src="{% static '/img/logo.png' %}"
             alt="PurrfectlyRated Logo"
           />
-          <h3 style="font-weight: lighter">
-            {{ request.session.username| title}} &nbsp;{{ user.lastname |title}}
-          </h3>
+          <h3>{{ request.session.username| title}}</h3>
         </div>
       </a>
 
@@ -123,20 +101,10 @@
       <a href="/favorites"><h4 id="fav-tab" class="tabs">Favorites</h4></a>
       <!-- <a href="/notifications"><h4 id="notif-tab" class="tabs">Notifications</h4></a> -->
       <a href="/about" class="margin-top"><h4 id="about-tab" class="tabs">About</h4></a>
-      <a href="/team"><h4 id="team-tab" class="tabs">The Developers</h4></a>
+      <a href="/team"><h4 id="team-tab" class="tabs">Developers</h4></a>
       <a href="/authentication/logout"><h4 id="logout-tab" class="tabs">Logout</h4></a>
     </div>
 
-    <!-- TRENDING DIV -->
-    <div class="featuredside">
-      <div>
-        <h1>Trending <span style="font-size: 10px">:fire:</span></h1>
-      </div>
-      <div class="border-top"></div>
-      <h4 id="food-tab" class="tabs">Food (1M)</h4>
-      <h4 id="cloth-tab" class="tabs">Clothes (99K)</h4>
-      <h4 id="cushion-tab" class="tabs">Cushions (97K)</h4>
-    </div>
     {%endif%}
 
     <div class="copyright">
@@ -155,7 +123,7 @@
       const home_button = document.getElementById("home-tab");
       const profile_button = document.getElementById("profile-tab");
       const favorite_button = document.getElementById("fav-tab");
-      const notif_button = document.getElementById("notif-tab");
+      const notif_button = document.querySelector('.fa-bell')
       const logout_button = document.getElementById("logout-tab");
       const about_button = document.getElementById("about-tab");
       const team_button = document.getElementById("team-tab");
@@ -168,6 +136,11 @@
       const aboutContentDiv = document.getElementById("aboutContentDiv");
       const teamContentDiv = document.getElementById("teamContentDiv");
 
+
+
+      notif_button.addEventListener('click', ()=>{
+        document.querySelector('.notificationsDiv').classList.toggle('active')
+      })
       // const sideBarButtons = [
       //   { tab: home_button, content: null },
       //   { tab: profile_button, content: homeContentDiv },
@@ -210,11 +183,20 @@
     </script>
 
     <script>
+      const theme = localStorage.getItem("theme");
+      theme && document.body.classList.add(theme);
+
       // BUTTONS
       const lightmode = document.querySelector(".fa-solid.fa-sun");
       lightmode?.addEventListener("click", (event) => {
         lightmode.classList.toggle("fa-sun");
         lightmode.classList.toggle("fa-moon");
+        document.body.classList.toggle("moon");
+        if (document.body.classList.contains("moon")) {
+          localStorage.setItem("theme", "moon");
+        } else {
+          localStorage.removeItem("theme");
+        }
       });
 
       const userButton = document.getElementById("userButton");
@@ -223,17 +205,10 @@
       const profileButton = document.getElementById("profileSubDiv");
       // const deleteButton = document.getElementById("deleteSubDiv");
       const logOutButton = document.getElementById("logOutSubDiv");
-      const confirmDeleteButton = document.getElementById("confirmDeleteButton");
-      const cancelDeleteButton = document.getElementById("cancelDeleteButton");
-
-      const saveEditButton = document.getElementById("saveEditButton");
-      const cancelEditButton = document.getElementById("cancelEditButton");
 
       // DIVS
-      const editAccountDiv = document.querySelector(".editAccountDiv");
-      const deleteAccountDiv = document.querySelector(".deleteAccountDiv");
       const settingsDiv = document.querySelector(".settingsDiv");
-      const divElements = settingsDiv.getElementsByTagName("div");
+      // const divElements = settingsDiv.getElementsByTagName("div");
 
       const session_data = {
         id: "{{ session_data.id }}",
@@ -254,6 +229,7 @@
       loginButton?.addEventListener("click", (event) => {
         // Prevent the click event from propagating to the document
         event.stopPropagation();
+        console.log('fefef')
         window.location.href = "/authentication/login";
       });
 
@@ -266,27 +242,6 @@
       profileButton.addEventListener("click", (event) => {
         event.stopPropagation();
         window.location.href = "/profile";
-      });
-
-      // deleteButton.addEventListener("click", (event) => {
-      //   event.stopPropagation();
-      //   deleteAccountDiv.style.display = "flex";
-      // });
-
-      saveEditButton.addEventListener("click", (event) => {
-        editAccountDiv.style.display = "none";
-      });
-
-      cancelEditButton.addEventListener("click", (event) => {
-        editAccountDiv.style.display = "none";
-      });
-
-      confirmDeleteButton.addEventListener("click", (event) => {
-        window.location.href = `/authentication/delete_account/${session_data.id}`;
-      });
-
-      cancelDeleteButton.addEventListener("click", (event) => {
-        deleteAccountDiv.style.display = "none";
       });
 
       logOutButton.addEventListener("click", (event) => {

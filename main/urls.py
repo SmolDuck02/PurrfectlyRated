@@ -8,7 +8,8 @@ app_name = 'main'
 
 urlpatterns = [
     path('profile/', views.profile, name='profile'),
-    path('home/<str:param>', views.home, name='home'),
+    path('home/', views.home, name='home'),
+    path('home/<str:param>/', views.home, name='home'),
     path('favorites/', views.favorites, name='favorites'),
     path('notifications/', views.notifications, name='notifications'),
     path('about/', views.about, name='about'),
@@ -29,4 +30,6 @@ urlpatterns = [
     path('edit_comment/<int:comment_id>/', views.edit_comment, name='edit_comment'),
     path('delete_comment/<int:comment_id>/', views.delete_comment, name='delete_comment'),
     path('add_reply/<int:user_id>/<int:comment_id>/', views.add_reply, name="add_reply"),
+    path('add_product/', views.add_product, name="add_product"),
+    path('update_product/<int:product_id>/', views.update_product, name="update_product"),
 ]

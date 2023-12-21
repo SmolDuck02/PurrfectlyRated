@@ -2,95 +2,102 @@
 
 <!DOCTYPE html>
 <html>
-<head>      
+  <head>
     <title>PurrfectlyRated</title>
-    <link rel="icon" href="{% static '/img/logo.png' %}" type="image/x-icon">
+    <link rel="icon" href="{% static '/img/logo.png' %}" type="image/x-icon" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
-    <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css?family=Lexend" rel="stylesheet" />
 
-
-    <link rel="stylesheet" href="{% static 'login.css' %}">
-</head>
-<body class="loginbody">
+    <link rel="stylesheet" href="{% static 'login.css' %}" />
+  </head>
+  <body class="loginbody">
     <main class="loginmain">
-    
-        <div class="loginIMGContainer">
-            <img src="{% static '/img/dog.png' %}" alt="Happy Doggie"/>
+      <div class="loginIMGContainer">
+        <img src="{% static '/img/dog.png' %}" alt="Happy Doggie" />
+      </div>
+
+      <section class="logincontent">
+        <a href="/">
+          <i class="fa-solid fa-x fa-xl" style="color: rgb(182, 106, 29)"></i>
+        </a>
+        <h1>Sign in</h1>
+        <hr class="loginHr" />
+        <div class="loginlogo">
+          <a href="www.facebook.com/jameelmarco.ursonal">
+            <i class="fa-brands fa-facebook fa-sm" style="color: #cc8033"></i>
+          </a>
+          <a href="www.facebook.com/jameelmarco.ursonal">
+            <i class="fa-brands fa-google fa-sm" style="color: #cc8033"></i>
+          </a>
+          <a href="www.facebook.com/jameelmarco.ursonal">
+            <i class="fa-brands fa-twitter fa-sm" style="color: #cc8033"></i>
+          </a>
         </div>
-        
+        <p class="loginsignin">Or Sign in To Continue</p>
+        <form class="loginform" method="post">
+          {% csrf_token %}
 
-        <section class="logincontent">
-            <a href="/">
-                <i class="fa-solid fa-x fa-xl" style="color: rgb(182, 106, 29);"></i>
-            </a>
-            <h1>Sign in</h1>
-            <hr class="loginHr"/>
-            <div class="loginlogo">
-                <a href="www.facebook.com/jameelmarco.ursonal">
-                    <i class="fa-brands fa-facebook fa-sm" style="color: #cc8033;"></i>
-                </a>
-                <a href="www.facebook.com/jameelmarco.ursonal">
-                    <i class="fa-brands fa-google fa-sm" style="color: #cc8033;"></i>
-                </a>
-                <a href="www.facebook.com/jameelmarco.ursonal">
-                    <i class="fa-brands fa-twitter fa-sm" style="color: #cc8033;"></i>
-                </a>
+          <input
+            id="usernamefield"
+            name="usernamefield"
+            type="text"
+            placeholder="Username"
+            required
+            autocomplete="username"
+          />
+          <input
+            id="passwordfield"
+            name="passwordfield"
+            type="password"
+            placeholder="Password"
+            required
+            autocomplete="current-password"
+          />
+
+          <div class="loginremember">
+            <div class="left">
+              <input type="checkbox" />
+              <p>Remember Me</p>
             </div>
-            <p class="loginsignin">Or Sign in To Continue</p>
-            <form class="loginform" method="post">
-
-            {% csrf_token %}
-
-                <input id="usernamefield" name="usernamefield" type="text" placeholder="Username" required autoComplete="username"/>
-                <input id="passwordfield" name="passwordfield" type="password" placeholder="Password" required autoComplete="current-password"/>
-
-                <div class="loginremember">
-                    <div class="left">
-                        <input type="checkbox" />
-                        <p>Remember Me</p>
-                    </div>
-                    <div class="right">
-                        <a href="www.facebook.com/jeb.bajenting">
-                            <span>Forgot Password?</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="login_button">
-                    <button onClick={onSignIn}>Sign In</button>
-                </div>
-            </form>
-            
-            <div class="signupterms">
-                <span>Don't have an Account?</span>
-                &nbsp;
-                <a href="/authentication/signup">
-                    <span><b>Sign Up</b></span>
-                </a>
+            <div class="right">
+              <a href="www.facebook.com/jeb.bajenting">
+                <span>Forgot Password?</span>
+              </a>
             </div>
-            <div class="loginterms">
-                <span><b>Terms & Conditions</b></span>
-                <span><b>Privacy Policy</b></span>
-            </div>
+          </div>
+          <div class="login_button">
+            <button>Sign In</button>
+          </div>
+        </form>
 
-
-        </section>
+        <div class="signupterms">
+          <span>Don't have an Account?</span>
+          &nbsp;
+          <a href="/authentication/signup">
+            <span><b>Sign Up</b></span>
+          </a>
+        </div>
+        <div class="loginterms">
+          <span><b>Terms & Conditions</b></span>
+          <span><b>Privacy Policy</b></span>
+        </div>
+      </section>
     </main>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            if ("{{ Error }}") {
-                alert("{{ Error }}");
-            }
-        });
+      document.addEventListener("DOMContentLoaded", function () {
+        if ("{{ Error }}") {
+          alert("{{ Error }}");
+        }
+      });
     </script>
-    
-</body>
+  </body>
 </html>

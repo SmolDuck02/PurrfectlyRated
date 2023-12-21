@@ -10,8 +10,9 @@ from rest_framework.decorators import api_view
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.template import loader
-from .models import ProductCategory, Users
-from .serializers import UsersSerializer, ProductCategorySerializer
+from .models import ProductCategory
+from authentication.models import Users
+from .serializers import  ProductCategorySerializer
 
 
 x = ''
@@ -33,8 +34,9 @@ def routes(request):
 def users(request):
 
   user_list = Users.objects.all()
-  serializer = UsersSerializer(user_list, many=True) #many=TRUE meaning serialize mny objects 
-  return Response(serializer.data)
+  # serializer = UsersSerializer(user_list, many=True) 
+  #many=TRUE meaning serialize mny objects 
+  # return Response(serializer.data)
 
 
 
@@ -42,8 +44,9 @@ def users(request):
 def user(request, pk):
 
   user = Users.objects.get(id=pk)
-  serializer = UsersSerializer(user, many=False) #many=TRUE meaning serialize mny objects 
-  return Response(serializer.data)
+  # serializer = UsersSerializer(user, many=False)
+   #many=TRUE meaning serialize mny objects 
+  # return Response(serializer.data)
 
 
 
@@ -51,12 +54,12 @@ def user(request, pk):
 def updateUser(request, pk):
   data = request.data
   user = Users.objects.get(id=pk)
-  serializer = UsersSerializer(instance=user, data=data)
+  # serializer = UsersSerializer(instance=user, data=data)
   
-  if serializer.is_valid():
-    serializer.save()
+  # if serializer.is_valid():
+  #   serializer.save()
 
-  return Response(serializer.data)
+  # return Response(serializer.data)
 
 
 @api_view(['DELETE'])
@@ -76,8 +79,8 @@ def createUser(request):
         password=data.get('password', '')
     )
     
-  serializer = UsersSerializer(user, many=False)
-  return Response(serializer.data)
+  # serializer = UsersSerializer(user, many=False)
+  # return Response(serializer.data)
 
 
 

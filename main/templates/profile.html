@@ -13,6 +13,74 @@
 
 {% include "add_post.html" with from_page='profile' %}
 
+<div class="addBioDiv">
+    <div class="addBioContent">
+    <h1>Add Bio</h1>
+    <form
+        method="post"
+        action="/profile/"
+        style="display: flex; flex-direction: column; gap: 8px"
+    >
+        {% csrf_token %}
+        <input placeholder="{{ user.bio | default:'Add Bio'}}" name="bio" id="bio" />
+ 
+        <div style="display: flex; gap: 10px;">
+        <button id="saveBioButton" type="submit" class="buttonFillStyle">Save Changes</button>
+        <button id="cancelBioButton" type="button" class="buttonBorderStyle">Cancel</button>
+        </div>
+    </form>
+    </div>
+</div>
+
+<div class="addLocationDiv">
+    <div class="addLocationContent">
+    <h1>Add Location</h1>
+    <form
+        method="post"
+        action="/profile/"
+        style="display: flex; flex-direction: column; gap: 8px"
+    >
+        {% csrf_token %}
+        <input placeholder="{{ user.location | default:'Add Location'}}" name="location" id="location" />
+ 
+        <div style="display: flex; gap: 10px;">
+        <button id="saveLocationButton" type="submit" class="buttonFillStyle">Save Changes</button>
+        <button id="cancelLocationButton" type="button" class="buttonBorderStyle">Cancel</button>
+        </div>
+    </form>
+    </div>
+</div>
+
+<div class="editAccountDiv">
+    <div class="editAccountContent">
+    <h1>Edit Profile</h1>
+    <form
+        method="post"
+        action="/profile/"
+        style="display: flex; flex-direction: column; gap: 8px"
+    >
+        {% csrf_token %}
+        <input placeholder="{{ user.username| title }}" name="username" id="username" />
+        <input placeholder="{{ user.bio | default:'Add Bio'}}" name="bio" id="bio" />
+        <input placeholder="{{ user.location | default:'Add Location'}}" name="location" id="location" />
+
+        <div class="buttonsDiv">
+        <button id="saveEditButton" type="submit" class="buttonFillStyle">Save Changes</button>
+        <button id="cancelEditButton" type="button" class="buttonBorderStyle">Cancel</button>
+        </div>
+    </form>
+    </div>
+</div>
+
+<div class="deleteAccountDiv">
+    <div class="deleteAccountContent">
+    <h3 style="text-align: center">Your account will be deleted.<br />Are you sure?</h3>
+    <div class="buttonsDiv">
+        <button id="confirmDeleteButton" class="buttonFillStyle">Confirm</button>
+        <button id="cancelDeleteButton" class="buttonBorderStyle">Cancel</button>
+    </div>
+    </div>
+</div> 
 
 <div style="width: 60%; display: flex; flex-direction: column; margin: 0 auto;">
 
@@ -25,8 +93,8 @@
     </div>
     
     <div class="profileUserName">
-        <h1>{{ user.username }}&nbsp;{{ user.lastname}}</h1>
-        <div>
+        <h2>{{ user.username|title }}&nbsp;{{ user.lastname}}</h2>
+        <div style="display: flex; gap: 10px">
         <button id="editProfileButton" class="buttonFillStyle"><b><i class="fa-solid fa-pen fa-xs"></i>&emsp;Edit Profile</b></button>
         <button id="deleteProfileButton" class="buttonBorderStyle"><span style="color:inherit">Delete Profile</span></button>
         </div>
@@ -38,19 +106,29 @@
 <div class="profileContent">
     <div class="dashboard" >
         {% if user.bio %}
-            <div>Bio
-            <p>{{ user.bio }}</p>
+            <div><p class="subDetailsTitle">Bio
+                <span style="font-size: 10px; display: flex; align-items: center; gap: 10px">
+                <i class="fa-solid fa-pen"></i>
+                <i class="fa-solid fa-x fa-lg"></i>
+                </span>
+            </p>
+            <p class="subDetailsContent">{{ user.bio }}</p>
             </div>
         {%else%}
-            <button style="width:100%;" class="buttonFillStyle"><i style="border: 1px solid white; padding: 3px; font-size: small; border-radius: 50%" class="fa-solid fa-plus"></i>&nbsp;Add Bio</button>
+            <button id='addBioButton' style="width:100%;" class="buttonFillStyle"><i style="border: 1px solid white; padding: 3px; font-size: small; border-radius: 50%" class="fa-solid fa-plus"></i>&nbsp;Add Bio</button>
         {%endif%}
 
         {% if user.location %}
-            <div>Location
-            <p>{{ user.location }}</p>
+            <div><p class="subDetailsTitle">Location
+                 <span style="font-size: 10px; display: flex; align-items: center; gap: 10px">
+                <i class="fa-solid fa-pen"></i>
+                <i class="fa-solid fa-x fa-lg"></i>
+                </span>
+            </p>
+            <p class="subDetailsContent">{{ user.location }}</p>
             </div>
         {%else%}
-            <button style="width:100%;" class="buttonFillStyle"><i style="border: 1px solid white; padding: 3px; font-size: small; border-radius: 50%" class="fa-solid fa-plus"></i>&nbsp;Add Location</button>
+            <button id='addLocationButton' style="width:100%;" class="buttonFillStyle"><i style="border: 1px solid white; padding: 3px; font-size: small; border-radius: 50%" class="fa-solid fa-plus"></i>&nbsp;Add Location</button>
         {%endif%}
     </div>
     
@@ -270,25 +348,83 @@
 <script src="{% static 'global.js' %}"></script>
 <script>
     
-    //makepost from the thing in profile
+    document.getElementById("profile-tab").classList.toggle("active");
+
     const makeReviewHeader = document.getElementById("makeReviewHeader");
+
+    const addBioButton = document.getElementById('addBioButton');
+    const saveBioButton = document.getElementById('saveBioButton');
+    const cancelBioButton = document.getElementById('cancelBioButton');
+
+    const addLocationButton = document.getElementById('addLocationButton')
+    const saveLocationButton = document.getElementById('saveLocationButton');
+    const cancelLocationButton = document.getElementById('cancelLocationButton');
+    
+    const saveEditButton = document.getElementById("saveEditButton");
+    const cancelEditButton = document.getElementById("cancelEditButton");
+    
+    const editProfileButton = document.getElementById('editProfileButton')
+    const deleteProfileButton = document.getElementById('deleteProfileButton')
+    
+    const confirmDeleteButton = document.getElementById("confirmDeleteButton");
+    const cancelDeleteButton = document.getElementById("cancelDeleteButton");
+      
+    const editAccountDiv = document.querySelector(".editAccountDiv");
+    const deleteAccountDiv = document.querySelector(".deleteAccountDiv");
+    const addBioDiv = document.querySelector('.addBioDiv');
+    const addLocationDiv = document.querySelector('.addLocationDiv')
+
     makeReviewHeader.addEventListener("click", ()=>{
         document.querySelector(".makeReviewDiv").style.display = "flex";
     });
 
-    const editProfileButton = document.getElementById('editProfileButton')
-    editProfileButton.addEventListener("click", (event) => {
-        event.stopPropagation();
-        editAccountDiv.style.display = "flex";
-      });
+    addBioButton?.addEventListener("click", (event)=>{
+        addBioDiv.style.display = 'flex';
+    })
 
+    saveBioButton.addEventListener("click", (event)=>{
+        addBioDiv.style.display = 'none';
+    })
+
+    cancelBioButton.addEventListener("click", (event)=>{
+        addBioDiv.style.display = 'none';
+    })
+
+    addLocationButton?.addEventListener("click", (event)=>{
+        addLocationDiv.style.display = 'flex';
+    })
+
+    saveLocationButton.addEventListener("click", (event)=>{
+        addLocationDiv.style.display = 'none';
+    })
+
+    cancelLocationButton.addEventListener("click", (event)=>{
+        addLocationDiv.style.display = 'none';
+    })
     
-      
-    const deleteProfileButton = document.getElementById('deleteProfileButton')
+    saveEditButton.addEventListener("click", (event) => {
+        editAccountDiv.style.display = "none";
+    });
+
+    cancelEditButton.addEventListener("click", (event) => {
+        editAccountDiv.style.display = "none";
+    });
+
+    editProfileButton.addEventListener("click", (event) => {
+        editAccountDiv.style.display = "flex";
+    });
+
     deleteProfileButton.addEventListener("click", (event) => {
-        event.stopPropagation();
         deleteAccountDiv.style.display = "flex";
-      });
+    });
+
+    confirmDeleteButton.addEventListener("click", (event) => {
+        window.location.href = `/authentication/delete_account/${session_data.id}`;
+    });
+
+    cancelDeleteButton.addEventListener("click", (event) => {
+        deleteAccountDiv.style.display = "none";
+    });
 
 
     

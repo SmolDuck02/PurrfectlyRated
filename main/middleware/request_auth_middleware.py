@@ -28,6 +28,8 @@ class RequestAuthMiddleware:
         if 'user_id' in request.session and request.path in EXEMPT_URLS:
             print("kaniii", request.path)
             return redirect('/home/feed')
+        
+
         # else:
         #     print("nont")
             

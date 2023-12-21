@@ -18,7 +18,7 @@
   background-color: #ffffff;
   box-shadow: 0 0 50px -50px;
   height: auto;
-  width: 35%;
+  width: 40%;
   margin: 0 auto;
   margin-bottom: 20px;
   border-radius: 8px;
@@ -51,7 +51,7 @@
 }
 
 .VPimagesPost img {
-  height: 100%;
+  width: 100%;
   object-fit: contain;
 }
 

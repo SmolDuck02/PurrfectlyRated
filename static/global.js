@@ -4,70 +4,66 @@ const currentURL = window.location.href;
 
 const feedContentButton = document.getElementById("feedContentButton");
 const feedContentDiv = document.querySelector(".allReviewPostsParent");
-feedContentButton.addEventListener("click", (event) => {
-  event.stopPropagation();
-  if (!currentURL.endsWith("feed")) {
-    window.location.href = "/home/feed";
-  }
-});
 
 const productContentButton = document.getElementById("productContentButton");
 const productContentDiv = document.querySelector(".allProductPostsParent");
-productContentButton.addEventListener("click", (event) => {
-  event.stopPropagation();
-  if (!currentURL.endsWith("product")) {
-    window.location.href = "/home/product";
+
+function hideModal(id) {
+  document.getElementById(id).style.display = "none";
+  if (id == "addProductModal") {
+    document.getElementById("addCategory").selectedIndex = 0;
   }
-});
+}
+function confirmFromModal(id) {
+  document.getElementById(id).style.display = "none";
+}
 
-const featuredDiv = document.querySelector(".featuredside");
+function handleImagePicker(div) {
+  const changeImageInput = div.querySelector('input[type="file"]');
+  changeImageInput.click();
 
-//
-if (currentURL.endsWith("/feed")) {
+  changeImageInput.addEventListener("change", function () {
+    const selectedFile = this.files[0];
+    if (selectedFile) {
+      const imageURL = URL.createObjectURL(selectedFile);
+      div.style.backgroundImage = `url(${imageURL})`;
+    }
+  });
+}
+
+
+if (currentURL.endsWith("/feed/")) {
   document.getElementById("home-tab").classList.toggle("active");
   feedContentButton.classList.toggle("active");
   feedContentDiv.style.display = "flex";
-  productContentDiv.style.display = "none";
-  featuredDiv.style.display = "flex";
-} else if (currentURL.endsWith("/product")) {
+  document.querySelector(".searchBarContainer").style.display = "flex";
+} else if (currentURL.includes("product")) {
   document.getElementById("home-tab").classList.toggle("active");
   productContentButton.classList.toggle("active");
-  feedContentDiv.style.display = "none";
   productContentDiv.style.display = "flex";
-  featuredDiv.style.display = "flex";
-} else if (currentURL.endsWith("/favorites/")) {
-  document.getElementById("fav-tab").classList.toggle("active");
-  featuredDiv.style.display = "flex";
-} else if (currentURL.endsWith("/notifications/")) {
-  document.getElementById("notif-tab").classList.toggle("active");
-  featuredDiv.style.display = "none";
-} else if (currentURL.endsWith("/about/")) {
-  document.getElementById("about-tab").classList.toggle("active");
-  featuredDiv.style.display = "none";
-} else if (currentURL.endsWith("/team/")) {
-  document.getElementById("team-tab").classList.toggle("active");
-  featuredDiv.style.display = "none";
+  document.getElementById("productFiltersDiv").style.display = "flex";
+  document.getElementById("addProductButton").style.display = "flex";
+} else {
+  feedContentDiv.style.display = "flex";
 }
-
 //
-document.addEventListener("click", () => {
-  if (settingsDiv.classList.contains("active")) {
-    settingsDiv.classList.toggle("active");
-    for (const div of divElements) {
-      div.classList.toggle("active");
-    }
-  }
+document.addEventListener("click", (event) => {
+  // if (settingsDiv.classList.contains("active")) {
+  //   settingsDiv.classList.toggle("active");
+  //   for (const div of divElements) {
+  //     div.classList.toggle("active");
+  //   }
+  // }
 
   // FOR THE VIEW POST POPOUT
-  const viewPostDivs = document.querySelectorAll(`.viewPostDivBackground`);
-  viewPostDivs.forEach((div) => {
-    if (div.style.display != "none") {
-      div.style.display = "none";
-    }
-  });
+  const viewPostParentDiv = document.querySelector(`.viewPostParentDiv`);
+  if (viewPostParentDiv && !viewPostParentDiv.contains(event.target)) {
+    viewPostParentDiv.parentElement.style.display = "none";
+  }
 
-  // FOR THE ADD POST POPOUT
-  if (makeReviewDiv.style.display != "none") {
+  // FOR THE ADD REVIEW POST POPOUT
+  const makeReviewForm = document.querySelector(".makeReviewForm");
+  if (makeReviewForm && !makeReviewForm.contains(event.target)) {
     makeReviewDiv.style.display = "none";
   }
 });

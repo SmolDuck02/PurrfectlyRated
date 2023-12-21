@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import redirect, render
-from products.models import Users
+from .models import Users
 
 def myfirst(request):
   template = loader.get_template('myfirst.html')
@@ -54,6 +54,7 @@ def admin(request):
         request.session['user_id'] = user.id
         request.session['username'] = user.username
         request.session['password'] = user.password
+        request.session['admin'] = True
 
         return redirect("/home/feed")
    

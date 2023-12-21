@@ -2,7 +2,8 @@
 
 
 from django.db import models
-from products.models import Users
+from authentication.models import Users
+# from products.models import Users
 
 class Posts(models.Model):
     post_user = models.ForeignKey(Users, null=True, blank=True, on_delete=models.CASCADE)

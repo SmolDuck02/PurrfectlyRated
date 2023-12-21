@@ -9,6 +9,7 @@
   height: 100vh;
   justify-content: center;
   font-family: "Oswald", sans-serif;
+  color: var(--clr-dark-main);
 }
 
 .subcontainer {
@@ -49,7 +50,7 @@
 }
 .circular-image:hover {
   filter: none;
-  transform: scale(1.1);
+  transform: scale(1.1) translateY(-1em);
   z-index: 999;
 }
 

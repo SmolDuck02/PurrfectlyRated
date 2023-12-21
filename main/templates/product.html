@@ -1,0 +1,137 @@
+{% load static %}
+
+<!-- ADD PRODUCTS -->
+<div id="addProductModal" class="makeReviewDiv">
+  <div class="makeReviewForm">
+    <i
+      id="cancelPostIcon"
+      class="fa-solid fa-x"
+      onclick="hideModal('addProductModal')"
+      style="padding: 20px 20px 0px 20px; align-self: flex-end; cursor: pointer"
+    ></i>
+
+    <div style="text-align: center; margin-bottom: 30px" class="userPostDetails">
+      <h2>Add Product</h2>
+    </div>
+
+    <form action="/add_product/" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div style="gap: 8px" class="descriptionPost">
+        <textarea
+          id="addProductName"
+          name="addProductName"
+          class="postDescriptionContainer"
+          placeholder="Product Name"
+        ></textarea>
+       
+        <div>
+        <select name="addCategory" id="addCategory" style="height: 100%;">
+          <option value="1" selected disabled>Select Product Category: </option>
+          {% for category in product_category %}
+          <option value="{{ category.category_name }}">{{ category }}</option>
+          {% endfor %}
+        </select>
+        {% if request.GET.category_error %}
+          <span style="justify-content: flex-end;
+    color: #FF0000;
+    font-size: 12px;
+    display: flex;">*{{request.GET.category_error}}</span>
+        {%endif%}
+        </div>
+      </div>
+
+      <div id="addProductImage" style="flex-direction: column;" class="imagesAddPost">
+        <i class="fa-solid fa-image fa-lg">&nbsp; Add Product Image</i>
+        {% if request.GET.image_error %}
+          <span style="justify-content: flex-end;
+    color: #FF0000;
+    font-size: 12px;
+    display: flex;">*{{request.GET.image_error}}</span>
+        {%endif%}
+        <input
+          type="file"
+          id="uploadImageInput"
+          name="uploadImageInput"
+          accept="image/*"
+          style="display: none"
+        />
+      </div>
+      <button type="submit" id="publishReviewButton">Save Product</button>
+    </form>
+  </div>
+</div>
+
+<!-- EDIT PRODUCTS -->
+<div id="editProductModal-{{ product.id }}" class="makeReviewDiv">
+  <div class="makeReviewForm">
+    <i
+      id="cancelPostIcon"
+      class="fa-solid fa-x"
+      type="button"
+      onclick="hideModal('editProductModal-{{ product.id }}')"
+      style="padding: 20px 20px 0px 20px; align-self: flex-end; cursor: pointer"
+    ></i>
+
+    <div style="text-align: center; margin-bottom: 30px" class="userPostDetails">
+      <h2>Edit Product</h2>
+    </div>
+
+    <form action="/update_product/{{ product.id }}/" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div style="gap: 8px" class="descriptionPost">
+        <textarea
+          id="editProductName"
+          name="editProductName"
+          class="postDescriptionContainer"
+          placeholder="{{ product.product_name }}"
+        ></textarea>
+        <select name="editCategory" id="editCategory-{{ product.id }}">
+          <option value="0" disabled>Select Product Category:</option>
+          {%for category in product_category%} {% if category.category_name == product.product_category__category_name %}
+          <option value="{{category.category_name }}" selected>{{ category.category_name }}</option>
+          {%else%}
+          <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+          {%endif%} {%endfor%}
+        </select>
+      </div>
+
+      <div id="editProductImage-{{ product.id }}" class="imagesAddPost editProductImageDiv">
+        <i class="fa-solid fa-image fa-lg">&nbsp; Change Image</i>
+        <input
+          type="file"
+          id="uploadImageInput"
+          name="uploadImageInput"
+          accept="image/*"
+          style="display: none"
+        />
+      </div>
+      <button type="submit" id="publishReviewButton">Save Product</button>
+    </form>
+  </div>
+</div>
+
+<!-- DELETE PRODUCTS -->
+<div id="deleteProductModal" class="modalDiv">
+  <div class="modalContent">
+    <h3 style="text-align: center">Product will be deleted.<br />Are you sure?</h3>
+      <form action="/update_product/{{product.id}}/" method="post" class="buttonsDiv">
+        {%csrf_token%}
+        <button
+          id="confirmDeleteButton"
+          class="buttonFillStyle"
+          onclick="confirmFromModal('deleteProductModal')"
+          type="submit"
+        >
+          Confirm
+        </button>
+        <button
+          id="cancelButton"
+          class="buttonBorderStyle"
+          onclick="hideModal('deleteProductModal')"
+          type="button"
+        >
+          Cancel
+        </button>
+      </form>
+  </div>
+</div>

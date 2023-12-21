@@ -1,17 +1,56 @@
+:root {
+  --clr-dark-bg: #1d1c22;
+  --clr-dark-main: #23232a;
+  --clr-dark-sub: #1b1b24;
+  --clr-dark-text: #000;
+  --clr-dark-border: #393941;
+  --clr-dark-bd: 0, 0, 0;
+  --clr-light-bg: #f5f5f5;
+  --clr-light-main: #fff;
+  --clr-light-sub: #ddd;
+  --clr-light-border: #ebebeb;
+  --clr-light-text: #e7e7e7;
+  --clr-light-bd: 255, 255, 255;
+  /* #1f1f24 */
+  /* 1d1c22 */
+  /* #1a191c */
+  /* #212127 */
+  /* #23232a */
+}
+
+.moon {
+  --clr-light-bg: #1d1c22;
+  --clr-light-main: #23232a;
+  --clr-light-sub: #1b1b24;
+  --clr-light-text: #000;
+  --clr-light-border: #393941;
+  --clr-light-bd: 0, 0, 0;
+  --clr-dark-bg: #f5f5f5;
+  --clr-dark-main: #fff;
+  --clr-dark-sub: #ddd;
+  --clr-dark-border: #ebebeb;
+  --clr-dark-text: #e7e7e7;
+  --clr-dark-bd: 255, 255, 255;
+}
 * {
   padding: 0;
   margin: 0;
   text-decoration: none;
   box-sizing: border-box;
+  font-family: "Lexend", sans-serif;
+}
+
+* button, * i {
+  cursor: pointer;
 }
 
 body {
   font-family: "Lexend", sans-serif;
-  background-color: #f5f5f5;
+  background-color: var(--clr-light-bg);
 }
 
 .masterNav {
-  min-height: 70px;
+  height: 60px;
   background-color: #e0b37e;
   display: flex;
   justify-content: space-between;
@@ -51,9 +90,9 @@ nav .icons {
 }
 
 nav .icons input {
-  border: 2px solid #f0f0f0;
+  border: none;
   border-radius: 25px;
-  background-color: #f0f0f0;
+  background-color: transparent;
   /* #f9f9f9 */
   font-weight: normal;
   height: 15px;
@@ -65,14 +104,12 @@ nav .icons input {
 }
 
 nav .icons .inputDiv {
-  border: 2px solid #f0f0f0;
-  border-radius: 25px;
-  background-color: #f0f0f0;
-  /* #f9f9f9 */
+  border-radius: 10px;
+  background-color: #edc799;
   font-weight: normal;
   padding-left: 15px;
   height: 35px;
-  width: 55%;
+  width: 60%;
   font-size: 15px;
   overflow: hidden;
   display: flex;
@@ -117,38 +154,39 @@ nav .icons .inputDiv {
   cursor: pointer;
 }
 
-.settingsDiv {
-  display: none;
+.settingsDiv, .notificationsDiv {
+  display: flex;
   flex-direction: column;
-  transition: all 0.2s ease;
   position: fixed;
-  top: 4.3rem;
-  right: 0.3rem;
-
-  background-color: #fff;
+  top: 3.7rem;
+  right: 8rem;
+  background-color: var(--clr-light-main);
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(189, 157, 157, 0.1);
-  /* Other styles like width, height, etc. */
-  width: auto;
+  width: 280px;
   height: 1px;
-  padding: 0px;
-  border-radius: 10px;
+  padding: 0 10px;
+  border-radius: 3px;
   gap: 5px;
+  z-index: 9;
 
-  z-index: 1000;
-  /* Ensure the dropdown appears above other elements */
-  /* Add any other styles you need */
+  opacity: 0;
+
+  transition: opacity 0.3s ease, height 0.2s ease, padding 0.3s ease;
 }
 
-.settingsDiv.active {
-  height: fit-content;
+.settingsDiv.active, .notificationsDiv.active {
+  opacity: 1;
   padding: 10px;
-  display: flex; /* or any other appropriate display value */
+  height: 200px;
+  /* owr any other appropriate display value */
 }
 
-.settingsDiv div {
-  visibility: hidden;
-  transition: visibility 0.05s ease;
+.notificationsDiv span:hover {
+  background-color: #f0f0f0; /* Change the background color when hovering */
+}
+
+.notificationsDiv span {
   border-radius: 5px;
   padding: 10px 10px;
   cursor: pointer;
@@ -161,12 +199,22 @@ nav .icons .inputDiv {
   visibility: visible; /* Show the nested div elements */
 }
 
-.settingsDiv div:hover {
-  background-color: #f0f0f0; /* Change the background color when hovering */
+/* .notificationsDiv div {
+  visibility: hidden;
+  transition: visibility 0.05s ease;
+  border-radius: 5px;
+  padding: 10px 10px;
+  cursor: pointer;
+  display: flex;
+  gap: 15px;
+  align-items: center;
 }
 
+.settingsDiv.active div {
+  visibility: visible; /* Show the nested div elements */
+
+
 .buttonFillStyle {
-  width: auto;
   border-radius: 8px;
   border: 2px solid rgb(182, 106, 29);
   background-color: rgb(182, 106, 29);
@@ -174,50 +222,22 @@ nav .icons .inputDiv {
   font-size: 15px;
   padding: 8px;
   cursor: pointer;
-  font-family: "Lexend", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .buttonBorderStyle {
-  width: auto;
   border-radius: 8px;
   border: 2px solid rgb(182, 106, 29);
   background-color: transparent;
-  color: black;
+  color: var(--clr-dark-main);
   font-size: 15px;
   padding: 8px;
   cursor: pointer;
-  font-family: "Lexend", sans-serif;
-}
-
-.deleteAccountDiv,
-.editAccountDiv {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  position: fixed; /* Use 'fixed' instead of 'absolute' to keep it centered even when scrolling */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  margin: auto; /* Centers the form */
-  width: 100%;
-  height: 100%;
-  background-color: rgba(66, 37, 34, 0.3);
-  z-index: 999;
-}
-
-.deleteAccountContent,
-.editAccountContent {
-  background-color: #fff;
-  border-radius: 8px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40px 60px;
-  color: rgb(182, 106, 29);
-  gap: 30px;
 }
 
 .buttonsDiv {
@@ -235,7 +255,7 @@ nav .icons .inputDiv {
   bottom: 2rem;
   font-size: x-small;
   right: 2rem;
-  color: #515151;
+  color: var(--clr-dark-text);
   z-index: 999;
 
   transition: all 0.3s ease;
@@ -243,4 +263,41 @@ nav .icons .inputDiv {
 
 .copyright.active {
   bottom: 15rem;
+}
+
+.deleteAccountDiv,
+.editAccountDiv,
+.addBioDiv,
+.addLocationDiv,
+.modalDiv {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* Use 'fixed' instead of 'absolute' to keep it centered even when scrolling */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: var(--clr-dark-text);
+  margin: auto; /* Centers the form */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(var(--clr-dark-bd), 0.4);
+  z-index: 999;
+}
+
+.deleteAccountContent,
+.editAccountContent,
+.addBioContent,
+.addLocationContent,
+.modalContent {
+  background-color: var(--clr-light-main);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 60px;
+  /* color: rgb(182, 106, 29); */
+  gap: 30px;
 }

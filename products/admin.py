@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ProductCategory, Product, Users
+from .models import ProductCategory, Product
 
 # for display format  
 class Admin(admin.ModelAdmin):
@@ -8,4 +8,4 @@ class Admin(admin.ModelAdmin):
 
 admin.site.register(ProductCategory, Admin)
 admin.site.register(Product)
-admin.site.register(Users)
+# admin.site.register(Users)

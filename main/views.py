@@ -9,7 +9,8 @@ from django.forms import model_to_dict
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
-from products.models import Users, Product, ProductCategory
+from products.models import  Product, ProductCategory
+from authentication.models import Users
 from .models import Comments, Posts, Interaction
 from django.db.models import Prefetch
 import json
@@ -25,7 +26,6 @@ def landing(request):
 
 
 def home(request, param):
-
   if request.method == "POST":
     user = Users.objects.get(id=request.session['user_id'])
     description = request.POST['description']
@@ -34,12 +34,12 @@ def home(request, param):
     post = Posts(post_user = user, post_picture = uploadImageInput, post_description = description)
     post.save()
 
-    return redirect('/home')
+    return redirect('/home/feed')
 
   
   # FOR RENDER FUNCTION
   user = Users.objects.get(id=request.session['user_id'])
-  product_list = Product.objects.all().select_related('product_category').values(
+  product_list = Product.objects.all().select_related('product_category').filter(isDeleted=False).values(
   'id', 'product_picture', 'product_name', 'product_description', 'total_likes','total_favorites', 'total_reviews',
   'product_category__category_name', 'product_category__category_icon'
   )
@@ -51,13 +51,18 @@ def home(request, param):
   #   for comments in post.comments_set.all():
   #     print(post, post.id, "com:", comments, 'tis', comments.comments_set.all())
 
+  product_category = ProductCategory.objects.prefetch_related('product_set')
+
+  # for product in product_category:
+  #   print(len(product.product_set.all()))
 
   dt = datetime.now()
 
   user_list = list(Users.objects.filter(Q(id = user.id)).values_list())
   interaction_list = list(Interaction.objects.filter(Q(user_id = user.id)).values_list())
-  
-  return render(request, 'home.html', {"user_list": user_list, "user": user, "current_year": datetime.now().year, 'product_list': product_list, 'post_list' : post_list, "interaction_list" : interaction_list })
+  product_category_list = list(ProductCategory.objects.all().values_list())
+
+  return render(request, 'home.html', {"user_list": user_list, "user": user, "current_year": datetime.now().year, 'product_category' : product_category, 'product_category_list': product_category_list, 'product_list': product_list, 'post_list' : post_list, "interaction_list" : interaction_list })
   
 
 def favorites(request):
@@ -94,12 +99,21 @@ def profile(request):
   user = Users.objects.get(id=request.session['user_id'])
 
   if request.method == "POST":
-    user.username = request.POST['username']
-    user.bio = request.POST['bio']
+    if('username' in request.POST):
+      user.username = request.POST['username'] if request.POST['username'].strip() != '' else user.username
+      request.session['username'] = user.username
+    if('bio' in request.POST):
+      user.bio = request.POST['bio'] if request.POST['bio'].strip() != '' else user.bio
+    if('location' in request.POST):
+      user.location = request.POST['location'] if request.POST['location'].strip() != '' else user.location 
+    if('avatar' in request.POST):
+      user.location = request.POST['location'] if request.POST['location'].strip() != '' else user.location 
+    if('cover' in request.POST):
+      user.location = request.POST['cover'] if request.POST['cover'].strip() != '' else user.location 
     user.save()
   
   # user.posts_set.all() --- the objects in a list
-  user_post_list = user.posts_set.all().values()  # the objects with values
+  user_post_list = user.posts_set.all().order_by('-datetime_published').values()  # the objects with values
 
   return render(request, 'profile.html', {"current_year": datetime.now().year,"user": user, "user_post_list": user_post_list})
 
@@ -107,12 +121,12 @@ def profile(request):
 
 def search_body(request, search):
 
-  posts_list = Posts.objects.filter(Q(post_description__contains =search) | Q(post_description__startswith =search[0])).select_related('post_user').values(
+  posts_list = Posts.objects.filter(Q(post_description__contains =search) | Q(post_description__contains =search[0]) | Q(post_description__startswith =search[0])).select_related('post_user').values(
     'id', 'post_user__id', 'post_user__username', 'post_picture', 'post_description', 'total_likes','total_dislikes','total_favorites', 'datetime_published'
   )
   
   # | Q(product_description__contains=search) | Q(product_description__startswith =search[0]
-  products_list = Product.objects.filter(Q(product_name__contains =search) | Q(product_name__startswith =search[0])).select_related('product_category').values(
+  products_list = Product.objects.filter(Q(product_name__contains =search) | Q(product_name__contains =search[0]) | Q(product_name__startswith =search[0])).select_related('product_category').values(
     'id', 'product_picture', 'product_name', 'product_description', 'total_likes', 'total_favorites', 'total_reviews',
     'product_category__category_name', 'product_category__category_icon'
   )
@@ -219,7 +233,7 @@ def add_post(request, param):
   if request.method == "POST":
 
     user = Users.objects.get(id=request.session['user_id'])
-    description = request.POST['description']
+    description = request.POST['description'].strip()
     uploadImageInput = request.FILES.get('uploadImageInput', None)
 
     post = Posts(post_user = user, post_picture = uploadImageInput, post_description = description)
@@ -227,14 +241,15 @@ def add_post(request, param):
 
     if param == 'profile':
       return redirect('/profile')
-    return redirect('/home')
+    return redirect('/home/feed')
 
 
     
 def update_post(request, id):
-  description = request.POST['description']
+  description = request.POST['description'].strip()
   changeImageInput = request.FILES.get('changeImageInput', None)
 
+  print('efe', description)
   post = Posts.objects.get(id=id)
   post.post_description = description
   if(changeImageInput):
@@ -242,14 +257,14 @@ def update_post(request, id):
 
   post.save()
 
-  return redirect('/home')
+  return redirect('/home/feed')
 
 
 def delete_post(request, id):
   post = Posts.objects.get(id=id)
   post.delete()
   
-  return redirect('/home')
+  return redirect('/home/feed')
 
 def visibility_post(request, id):
   post = Posts.objects.get(id=id)
@@ -341,4 +356,43 @@ def heart_interaction(request, user_id, post_id):
   return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
+def add_product(request):
+  if request.method == 'POST':
 
+    uploadImageInput = request.FILES.get('uploadImageInput', None)
+    print(uploadImageInput)
+    if(uploadImageInput and 'addCategory' in request.POST):
+      category = ProductCategory.objects.get(category_name=request.POST['addCategory'])
+      product = Product(product_name = request.POST['addProductName'], product_picture = uploadImageInput, product_category = category)
+      product.save()
+    else:
+      if(not uploadImageInput and not 'addCategory' in request.POST):
+         return redirect('/home/product/?image_error=Missing%20Product%20Image&category_error=Missing%20Product%20Category')
+      elif(not uploadImageInput):
+        return redirect('/home/product/?image_error=Missing%20Product%20Image')
+      else:
+        return redirect('/home/product/?category_error=Missing%20Product%20Category')
+    
+    return redirect('/home/product')
+  return redirect('/home/feed')
+
+
+def update_product(request, product_id):
+
+  product = Product.objects.get(id=product_id)
+  uploadImageInput = request.FILES.get('uploadImageInput', product.product_picture)
+
+  if request.method == 'POST':
+    if('editProductName' in request.POST):
+      category = ProductCategory.objects.get(category_name=request.POST['editCategory'])
+
+      product.product_name = request.POST['editProductName'] if request.POST['editProductName'].strip() != '' else product.product_name
+      product.product_category = category
+      product.product_picture = uploadImageInput
+    else:
+      product.isDeleted = True;
+      
+    product.save()
+
+    return redirect('/home/product')
+  return redirect('/home/feed')
