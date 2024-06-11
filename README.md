@@ -1,5 +1,5 @@
 # PurrfectlyRated
-A social app about pets and pet product reviews
+A social web app about pets and pet product reviews
 
 ## Get Started
 
