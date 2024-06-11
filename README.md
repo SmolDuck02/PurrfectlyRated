@@ -29,7 +29,7 @@ python manage.py runserver
 ```
 
 ## Team
-Jaybert Bajenting
-Kurt Cabural
-Leemar Paner
-Bermar Villarazo Jr.
+- Bajenting, Jaybert 
+- Cabural, Kurt
+- Paner, Leemar 
+- Villarazo Jr., Bermar 
